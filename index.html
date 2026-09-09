@@ -66,6 +66,30 @@
     .daily-verse-title { color: var(--gold-color); font-weight: 700; font-size: 0.85rem; margin-bottom: 4px; }
     .daily-verse-text { font-size: 1rem; font-weight: 600; color: #fff; line-height: 1.5; }
 
+    /* كارت معلومات قيمة الخارجي المميز */
+    .valuable-info-banner {
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.12) 0%, rgba(18, 26, 43, 0.95) 100%);
+      border: 1px solid var(--accent-cyan);
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+    }
+    .valuable-info-banner:hover {
+      border-color: #55e6ff;
+      transform: translateY(-2px);
+    }
+    .valuable-info-header {
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;
+    }
+    .valuable-info-title {
+      font-size: 1rem; font-weight: 800; color: var(--accent-cyan); display: flex; align-items: center; gap: 6px;
+    }
+    .valuable-info-body {
+      font-size: 0.9rem; color: #e2e8f0; line-height: 1.6; font-family: 'Cairo', sans-serif;
+    }
+
     .prayer-banner {
       background: var(--card-bg); border: 1px solid var(--card-border);
       backdrop-filter: blur(12px); border-radius: 16px; padding: 14px; margin-bottom: 16px;
@@ -168,7 +192,18 @@
 
     <div class="daily-verse-card">
       <div class="daily-verse-title">📖 آية اليوم</div>
-      <div class="daily-verse-text" id="daily-verse-content">جاري التحديث...</div>
+      <div class="daily-verse-text" id="daily-verse-content">«فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ»</div>
+    </div>
+
+    <!-- خانة معلومات قيمة الخارجية المطلوبة -->
+    <div class="valuable-info-banner" onclick="showSection('info')">
+      <div class="valuable-info-header">
+        <div class="valuable-info-title">💡 معلومة قيمة اليوم</div>
+        <span style="font-size:0.75rem; color:var(--gold-color); font-weight:bold;">عرض المزيد ←</span>
+      </div>
+      <div class="valuable-info-body">
+        <strong>أفضل أوقات استجابة الدعاء:</strong> الثلث الأخير من الليل، وبين الأذان والإقامة، وعند نزول المطر، وساعة الاستجابة يوم الجمعة (بين العصر والمغرب).
+      </div>
     </div>
 
     <!-- مواقيت الصلاة تظهر في الرئيسية فقط -->
@@ -289,7 +324,7 @@
     <div class="info-list" id="info-container"></div>
   </div>
 
-  <!-- قسم المحاضرات الإيمانية -->
+  <!-- قسم المحاضرات الإيمانية مع السيرفرات المحدثة الموثوقة -->
   <div id="view-lectures" class="view-section">
     <div class="section-header-bar">
       <h2 class="section-title">🎙️ المحاضرات والدروس الإسلامية</h2>
@@ -299,29 +334,37 @@
       <div class="lecture-card">
         <div class="lecture-title">تفسير سورة الفاتحة والأعمال بالنيات</div>
         <div class="lecture-sheikh">الشيخ محمد متولي الشعراوي</div>
-        <audio controls preload="metadata">
+        <audio controls preload="none">
+          <source src="https://archive.org/download/Shaarawy-Tafseer/001-Al-Fatiha.mp3" type="audio/mp3">
           <source src="https://server11.mp3quran.net/download/shaarawi/001.mp3" type="audio/mp3">
+          متصفحك لا يدعم تشغيل الصوت.
         </audio>
       </div>
       <div class="lecture-card">
         <div class="lecture-title">خواطر إيمانية وحكمة الابتلاء</div>
         <div class="lecture-sheikh">الشيخ محمد متولي الشعراوي</div>
-        <audio controls preload="metadata">
+        <audio controls preload="none">
+          <source src="https://archive.org/download/Shaarawy-Tafseer/002-Al-Baqarah.mp3" type="audio/mp3">
           <source src="https://server11.mp3quran.net/download/shaarawi/002.mp3" type="audio/mp3">
+          متصفحك لا يدعم تشغيل الصوت.
         </audio>
       </div>
       <div class="lecture-card">
         <div class="lecture-title">أسباب شرح الصدر وإصلاح القلوب</div>
         <div class="lecture-sheikh">الشيخ أبو إسحاق الحويني</div>
-        <audio controls preload="metadata">
+        <audio controls preload="none">
+          <source src="https://archive.org/download/El-Heweny-Audio/001-Islah-Alqoloub.mp3" type="audio/mp3">
           <source src="https://media.blubrry.com/muslim_lectures/archive.org/download/Heweny_Lectures/01_Heweny.mp3" type="audio/mp3">
+          متصفحك لا يدعم تشغيل الصوت.
         </audio>
       </div>
       <div class="lecture-card">
         <div class="lecture-title">مقتضيات محبة النبي ﷺ والعمل بسنته</div>
         <div class="lecture-sheikh">الشيخ أبو إسحاق الحويني</div>
-        <audio controls preload="metadata">
+        <audio controls preload="none">
+          <source src="https://archive.org/download/El-Heweny-Audio/002-Mahabat-Alnabi.mp3" type="audio/mp3">
           <source src="https://media.blubrry.com/muslim_lectures/archive.org/download/Heweny_Lectures/02_Heweny.mp3" type="audio/mp3">
+          متصفحك لا يدعم تشغيل الصوت.
         </audio>
       </div>
     </div>
@@ -475,7 +518,7 @@
 
       textDisplay.innerHTML = surahHtml;
     } catch (err) {
-      textDisplay.innerText = "حدث خطأ أثناء الاتصال بالشبكة لجلُب الآيات.";
+      textDisplay.innerText = "حدث خطأ أثناء الاتصال بالشبكة لجلب الآيات.";
     }
   }
 
@@ -567,138 +610,114 @@
     document.getElementById('tasbeeh-count').innerText = tasbeehValue;
   }
 
-  // الأذكار الكاملة
+  // الأذكار الكاملة والزيادات المطلوبة
   const morningData = [
     { text: "أَعُوذُ بِاللهِ مِنْ الشَّيْطَانِ الرَّجِيمِ: {اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلاَّ بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلاَ يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلاَّ بِمَا شَاء وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالأَرْضَ وَلاَ يَؤُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ}.", fadhyl: "من قالها حين يصبح أُجير من الجن حتى يمسي.", count: 1 },
     { text: "بِسْمِ اللهِ الرَّحْمنِ الرَّحِيمِ: {قُلْ هُوَ اللَّهُ أَحَدٌ...}، {قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ...}، {قُلْ أَعُوذُ بِرَبِّ النَّاسِ...}", fadhyl: "من قالها حين يصبح وحين يمسي ثلاث مرات تكفيه من كل شيء.", count: 3 },
-    { text: "أَصْبَحْنَا وَأَصْبَحَ المُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ، لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ المُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.", fadhyl: "", count: 1 },
+    { text: "أَصْبَحْنَا وَأَصْبَحَ المُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ، لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ المُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.", fadhyl: "دعاء بداية اليوم والتوكل على الله.", count: 1 },
     { text: "اللَّهُمَّ أَنْتَ رَبِّي لاَ إِلَهَ إِلاَّ أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لاَ يَغْفِرُ الذُّنُوبَ إِلاَّ أَنْتَ.", fadhyl: "سيد الاستغفار: من قالها موقناً بها ومات من يومه دخل الجنة.", count: 1 },
     { text: "رَضِيتُ بِاللَّهِ رَبَّاً، وَبِالإِسْلاَمِ دِينَاً، وَبِمُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ نَبِيَّاً.", fadhyl: "من قالها حين يصبح وحين يمسي كان حقاً على الله أن يرضيه.", count: 3 },
     { text: "بِسْمِ اللَّهِ الَّذِي لاَ يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الأَرْضِ وَلاَ فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ.", fadhyl: "لم يضره من الله شيء.", count: 3 },
     { text: "اللَّهُمَّ إِنِّي أَصْبَحْتُ أُشْهِدُكَ وَأُشْهِدُ حَمَلَةَ عَرْشِكَ، وَمَلاَئِكَتَكَ وَجَمِيعَ خَلْقِكَ، أَنَّكَ أَنْتَ اللَّهُ لاَ إِلَهَ إِلاَّ أَنْتَ وَحْدَكَ لاَ شَرِيكَ لَكَ، وَأَنَّ مُحَمَّدَاً عَبْدُكَ وَرَسُولُكَ.", fadhyl: "من قالها أعتد الله ربع جسده من النار، ومن قالها أربعاً أعتقه الله كاملاً.", count: 4 },
     { text: "يا حَيُّ يا قَيُّومُ بِرَحْمَتِكِ أَسْتَغِيثُ أَصْلِحْ لِي شَأْنِي كُلَّهُ وَلا تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ.", fadhyl: "دعاء كشف الهم والتيسير.", count: 1 },
-    { text: "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ: عَدَدَ خَلْقِهِ، وَرِضَا نَفْسِهِ، وَزِنَةَ عَرْشِهِ، وَمِدَادَ كَلِمَاتِهِ.", fadhyl: "من أعظم الأذكار أجراً.", count: 3 }
+    { text: "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ: عَدَدَ خَلْقِهِ، وَرِضَا نَفْسِهِ، وَزِنَةَ عَرْشِهِ، وَمِدَادَ كَلِمَاتِهِ.", fadhyl: "من أعظم الأذكار أجراً مضاعفاً.", count: 3 },
+    { text: "اللَّهُمَّ عَافِنِي فِي بَدَنِي، اللَّهُمَّ عَافِنِي فِي سَمْعِي، اللَّهُمَّ عَافِنِي فِي بَصَرِي، لاَ إِلَهَ إِلاَّ أَنْتَ. اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْكُفْرِ وَالْفَقْرِ، وَأَعُوذُ بِكَ مِنْ عَذَابِ الْقَبْرِ، لاَ إِلَهَ إِلاَّ أَنْتَ.", fadhyl: "دعاء حفظ الصحة والعافية.", count: 3 },
+    { text: "اللَّهُمَّ صَلِّ وَسَلِّمْ وَبَارِكْ عَلَى نَبِيِّنَا مُحَمَّدٍ.", fadhyl: "من صلى عليّ حين يصبح عشراً وحين يمسي عشراً أدركته شفاعتي يوم القيامة.", count: 10 },
+    { text: "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ.", fadhyl: "حُطَّتْ خَطَايَاهُ وَإِنْ كَانَتْ مِثْلَ زَبَدِ الْبَحْرِ.", count: 100 }
   ];
 
   const eveningData = [
     { text: "أَعُوذُ بِاللهِ مِنْ الشَّيْطَانِ الرَّجِيمِ: {اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ...}.", fadhyl: "من قالها حين يمسي أُجير من الجن حتى يصبح.", count: 1 },
     { text: "بِسْمِ اللهِ الرَّحْمنِ الرَّحِيمِ: {قُلْ هُوَ اللَّهُ أَحَدٌ...}، {قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ...}، {قُلْ أَعُوذُ بِرَبِّ النَّاسِ...}", fadhyl: "تكفيه من كل شيء.", count: 3 },
-    { text: "أَمْسَيْنَا وَأَمْسَى المُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ، لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ المُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.", fadhyl: "", count: 1 },
-    { text: "اللَّهُمَّ أَنْتَ رَبِّي لاَ إِلَهَ إِلاَّ أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ...", fadhyl: "سيد الاستغفار.", count: 1 },
-    { text: "أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ.", fadhyl: "من قالها لم تضره حمة أو ليلة مسائه.", count: 3 },
-    { text: "رَضِيتُ بِاللَّهِ رَبَّاً، وَبِالإِسْلاَمِ دِينَاً، وَبِمُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ نَبِيَّاً.", fadhyl: "كان حقاً على الله أن يرضيه.", count: 3 },
-    { text: "اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى نَبِيِّنَا مُحَمَّدٍ.", fadhyl: "من صلى عليّ حين يصبح وحين يمسي عشراً أدركته شفاعتي.", count: 10 }
+    { text: "أَمْسَيْنَا وَأَمْسَى المُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ، لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ المُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.", fadhyl: "تحصين الليلة والتوكل على الله.", count: 1 },
+    { text: "اللَّهُمَّ أَنْتَ رَبِّي لاَ إِلَهَ إِلاَّ أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لاَ يَغْفِرُ الذُّنُوبَ إِلاَّ أَنْتَ.", fadhyl: "سيد الاستغفار.", count: 1 },
+    { text: "أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ.", fadhyl: "من قالها حين يمسي لم تضره حمة (لدغة أو أذى) تلك الليلة.", count: 3 },
+    { text: "بِسْمِ اللَّهِ الَّذِي لاَ يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الأَرْضِ وَلاَ فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ.", fadhyl: "لم يضره من الله شيء.", count: 3 },
+    { text: "رَضِيتُ بِاللَّهِ رَبَّاً، وَبِالإِسْلاَمِ دِينَاً، وَبِمُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ نَبِيَّاً.", fadhyl: "كان حقاً على الله أن يرضيه يوم القيامة.", count: 3 },
+    { text: "يا حَيُّ يا قَيُّومُ بِرَحْمَتِكِ أَسْتَغِيثُ أَصْلِحْ لِي شَأْنِي كُلَّهُ وَلا تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ.", fadhyl: "دعاء حفظ الشأن وإصلاح الحال.", count: 1 },
+    { text: "اللَّهُمَّ صَلِّ وَسَلِّمْ وَبَارِكْ عَلَى نَبِيِّنَا مُحَمَّدٍ.", fadhyl: "شفاعة النبي يوم القيامة.", count: 10 },
+    { text: "أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ.", fadhyl: "تطهير ومحو للذنوب والسيئات.", count: 100 }
   ];
 
-  function renderAzkarList(listData, containerId) {
+  const hadithData = [
+    { text: "إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى...", rawi: "رواه البخاري ومسلم عن عمر بن الخطاب رضي الله عنه" },
+    { text: "مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا، سَهَّلَ اللَّهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّةِ.", rawi: "رواه مسلم عن أبي هريرة رضي الله عنه" },
+    { text: "المُؤْمِنُ القَوِيُّ خَيْرٌ وَأَحَبُّ إِلى اللَّهِ مِنَ المُؤْمِنِ الضَّعِيفِ، وفي كُلٍّ خَيْرٌ...", rawi: "رواه مسلم عن أبي هريرة رضي الله عنه" }
+  ];
+
+  const infoData = [
+    { title: "فضيلة الذكر المضاعف", desc: "قول (سبحان الله وبحمده عدد خلقه ورضا نفسه وزنة عرشه ومعداد كلماته) يعدل ساعات طويلة من الذكر والاستغفار." },
+    { title: "أحكام وسنن قيام الليل", desc: "أفضل أوقاته الثلث الأخير من الليل، وأقله ركعة واحدة (الوتر)، وله أجر كبير في تفريج الهموم واستجابة الدعوات." },
+    { title: "فضل الصلاة على النبي ﷺ", desc: "من صلى على النبي صلاة واحدة صلى الله عليه بها عشراً، ورفعت له بها عشر درجات وحطت عنه عشر خطيئات." }
+  ];
+
+  function renderAzkarList(data, containerId) {
     const container = document.getElementById(containerId);
     container.innerHTML = "";
-    listData.forEach((item) => {
+    data.forEach((item, index) => {
       const card = document.createElement('div');
       card.className = 'zkr-card';
+      let currentCount = item.count;
+      
       card.innerHTML = `
         <div class="zkr-text">${item.text}</div>
-        ${item.fadhyl ? `<div class="zkr-fadhyl">💡 ${item.fadhyl}</div>` : ''}
+        ${item.fadhyl ? `<div class="zkr-fadhyl">${item.fadhyl}</div>` : ''}
         <div class="zkr-footer">
-          <span style="font-size:0.75rem; color:var(--text-muted);">التكرار: ${item.count}</span>
-          <button class="zkr-count-btn" onclick="countZkr(this)">${item.count}</button>
+          <span style="font-size:0.75rem; color:var(--text-muted);">التكرار المطلوبة: ${item.count}</span>
+          <button class="zkr-count-btn" id="btn-${containerId}-${index}">${currentCount}</button>
         </div>
       `;
+      
       container.appendChild(card);
+
+      const btn = card.querySelector(`#btn-${containerId}-${index}`);
+      btn.onclick = () => {
+        if (currentCount > 0) {
+          currentCount--;
+          btn.innerText = currentCount;
+          triggerVibration();
+          if (currentCount === 0) {
+            btn.classList.add('completed');
+            btn.innerText = '✓ تمت';
+          }
+        }
+      };
     });
   }
-
-  function countZkr(btn) {
-    triggerVibration();
-    let current = parseInt(btn.innerText);
-    if (!isNaN(current) && current > 1) btn.innerText = current - 1;
-    else { btn.innerText = "✓ تم"; btn.classList.add('completed'); btn.disabled = true; }
-  }
-
-  renderAzkarList(morningData, 'morning-azkar-container');
-  renderAzkarList(eveningData, 'evening-azkar-container');
-
-  // الأحاديث الصحيحة
-  const hadithData = [
-    { text: "إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى، فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى دُنْيَا يُصِيبُهَا، أَوْ إِلَى امْرَأَةٍ يَنْكِحُهَا، فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ.", rawi: "رواه البخاري ومسلم - عن عمر بن الخطاب رضي الله عنه" },
-    { text: "مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا، سَهَّلَ اللَّهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّةِ.", rawi: "رواه مسلم - عن أبي هريرة رضي الله عنه" },
-    { text: "لاَ يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ.", rawi: "رواه البخاري ومسلم - عن أنس بن مالك رضي الله عنه" },
-    { text: "المُسْلِمُ مَنْ سَلِمَ المُسْلِمُونَ مِنْ لِسَانِهِ وَيَدِهِ، وَالمُهَاجِرُ مَنْ هَجَرَ مَا نَهَى اللَّهُ عَنْهُ.", rawi: "رواه البخاري - عن عبد الله بن عمرو رضي الله عنهما" },
-    { text: "احْفَظِ اللَّهَ يَحْفَظْكَ، احْفَظِ اللَّهَ تَجِدْهُ تُجَاهَكَ، إِذَا سَأَلْتَ فَاسْأَلِ اللَّهَ، وَإِذَا اسْتَعَنْتَ فَاسْتَعِنْ بِاللَّهِ.", rawi: "رواه الترمذي وقال حديث حسن صحيح - عن ابن عباس رضي الله عنهما" }
-  ];
 
   function renderHadithList() {
     const container = document.getElementById('hadith-container');
     container.innerHTML = "";
-    hadithData.forEach(h => {
-      const card = document.createElement('div');
-      card.className = 'hadith-card';
-      card.innerHTML = `
-        <div class="hadith-text">"${h.text}"</div>
-        <div class="hadith-rawi">📌 ${h.rawi}</div>
+    hadithData.forEach(item => {
+      container.innerHTML += `
+        <div class="hadith-card">
+          <div class="hadith-text">«${item.text}»</div>
+          <div class="hadith-rawi">${item.rawi}</div>
+        </div>
       `;
-      container.appendChild(card);
     });
   }
-  renderHadithList();
-
-  // المعلومات القيمة
-  const infoData = [
-    { title: "فضل قيام الليل وصلاة الوتر", desc: "قيام الليل هو شرف المؤمن، ووقتها يبتدئ من بعد صلاة العشاء إلى طلوع الفجر، وأفضل وقتها هو الثلث الأخير من الليل حيث ينزل ربنا تبارك وتعالى إلى السماء الدنيا." },
-    { title: "أفضل أوقات استجابة الدعاء", desc: "1. بين الأذان والإقامة.\n2. أثناء السجود في الصلاة.\n3. الثلث الأخير من الليل.\n4. آخر ساعة من يوم الجمعة قبل المغرب." },
-    { title: "شروط إجابة الدعاء", desc: "الإخلاص لله، وحضور القلب أثناء الدعاء، وطيب المأكل والمشرب، وعدم الاستعجال كأن يقول (دعوت ولم يستجب لي)." }
-  ];
 
   function renderInfoList() {
     const container = document.getElementById('info-container');
     container.innerHTML = "";
-    infoData.forEach(i => {
-      const card = document.createElement('div');
-      card.className = 'info-card';
-      card.innerHTML = `
-        <div class="info-title">💡 ${i.title}</div>
-        <div class="info-desc">${i.desc}</div>
+    infoData.forEach(item => {
+      container.innerHTML += `
+        <div class="info-card">
+          <div class="info-title">💡 ${item.title}</div>
+          <div class="info-desc">${item.desc}</div>
+        </div>
       `;
-      container.appendChild(card);
     });
   }
-  renderInfoList();
 
-  // آية اليوم
-  const dailyVerses = [
-    "﴿ إِنَّ مَعَ الْعُسْرِ يُسْرًا ﴾ — سورة الشرح",
-    "﴿ وَأُفَوِّضُ أَمْرِي إِلَى اللَّهِ ﴾ — سورة غافر",
-    "﴿ لَا تَحْزَنْ إِنَّ اللَّهَ مَعَنَا ﴾ — سورة التوبة"
-  ];
-  document.getElementById('daily-verse-content').innerText = dailyVerses[Math.floor(Math.random() * dailyVerses.length)];
-
-  // مواقيت الصلاة
-  async function fetchLivePrayerTimes() {
-    try {
-      const res = await fetch('https://api.aladhan.com/v1/timingsByCity?city=Cairo&country=Egypt&method=5');
-      const data = await res.json();
-      const timings = data.data.timings;
-
-      document.getElementById('time-fajr').innerText = timings.Fajr;
-      document.getElementById('time-sunrise').innerText = timings.Sunrise;
-      document.getElementById('time-dhuhr').innerText = timings.Dhuhr;
-      document.getElementById('time-asr').innerText = timings.Asr;
-      document.getElementById('time-maghrib').innerText = timings.Maghrib;
-      document.getElementById('time-isha').innerText = timings.Isha;
-
-      document.getElementById('next-prayer-text').innerText = "تم التحديث التلقائي لمواقيت اليوم ✨";
-    } catch (e) {
-      document.getElementById('next-prayer-text').innerText = "تعذر جلب المواقيت تلقائياً.";
-    }
-  }
-
-  fetchLivePrayerTimes();
-
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js').catch(()=>{});
-    });
-  }
+  // تشغيل التهيئة عند تحميل الصفحة
+  window.onload = () => {
+    renderAzkarList(morningData, 'morning-azkar-container');
+    renderAzkarList(eveningData, 'evening-azkar-container');
+    renderHadithList();
+    renderInfoList();
+  };
 </script>
 
 </body>

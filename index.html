@@ -9,7 +9,7 @@
   <meta name="theme-color" content="#00d4ff">
   <link rel="apple-touch-icon" href="https://img.icons8.com/color/512/quran.png">
 
-  <!-- خط Cairo المخصص للموبايل -->
+  <!-- خط Cairo و Amiri -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
@@ -76,7 +76,6 @@
     .prayer-times-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; text-align: center; }
     @media (min-width: 600px) { .prayer-times-grid { grid-template-columns: repeat(6, 1fr); } }
     .prayer-item { padding: 8px 2px; border-radius: 10px; background: rgba(255, 255, 255, 0.03); }
-    .prayer-item.active-prayer { background: rgba(0, 212, 255, 0.2); border: 1px solid var(--accent-cyan); }
     .prayer-name { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; margin-bottom: 2px; }
     .prayer-time { font-size: 0.85rem; font-weight: 700; }
 
@@ -98,7 +97,6 @@
     .quran-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; max-height: 480px; overflow-y: auto; padding-left: 2px; }
     @media (min-width: 600px) { .quran-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); } }
     .surah-card-item { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 10px 6px; border-radius: 10px; cursor: pointer; text-align: center; }
-    .surah-card-item:active { background: rgba(0, 212, 255, 0.18); border-color: var(--accent-cyan); }
     .surah-num { font-size: 0.7rem; color: var(--accent-cyan); font-weight: 700; }
     .surah-title-ar { font-size: 1rem; font-weight: 700; margin: 2px 0; }
 
@@ -120,15 +118,8 @@
     }
 
     .surah-reader-box { background: rgba(0, 0, 0, 0.35); border: 1px solid var(--card-border); border-radius: 12px; padding: 16px 12px; }
-    
     .surah-text-display { 
-      font-size: 1.8rem; 
-      line-height: 2.3; 
-      text-align: justify; 
-      text-align-last: center; 
-      color: #ffffff; 
-      font-family: 'Amiri', serif;
-      font-weight: 700;
+      font-size: 1.8rem; line-height: 2.3; text-align: justify; text-align-last: center; color: #ffffff; font-family: 'Amiri', serif; font-weight: 700;
     }
 
     .tasbeeh-container { text-align: center; padding: 4px 0; }
@@ -139,16 +130,17 @@
     .tasbeeh-btn:active { transform: scale(0.92); }
     .reset-btn { margin-top: 10px; background: rgba(239, 68, 68, 0.15); border: 1px solid #ef4444; color: #ef4444; padding: 4px 12px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; font-family: 'Cairo'; }
 
-    .azkar-list, .lecture-list { display: flex; flex-direction: column; gap: 10px; }
-    .zkr-card, .lecture-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 6px; }
-    .zkr-text { font-size: 1rem; line-height: 1.7; color: #f8fafc; text-align: justify; font-family: 'Amiri', serif; }
-    .zkr-fadhyl { font-size: 0.8rem; color: var(--gold-color); line-height: 1.4; background: rgba(245, 158, 11, 0.05); padding: 4px 8px; border-radius: 6px; border-right: 3px solid var(--gold-color); }
+    .azkar-list, .lecture-list, .hadith-list, .info-list { display: flex; flex-direction: column; gap: 10px; }
+    .zkr-card, .lecture-card, .hadith-card, .info-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 6px; }
+    .zkr-text, .hadith-text { font-size: 1rem; line-height: 1.7; color: #f8fafc; text-align: justify; font-family: 'Amiri', serif; }
+    .zkr-fadhyl, .hadith-rawi { font-size: 0.8rem; color: var(--gold-color); line-height: 1.4; background: rgba(245, 158, 11, 0.05); padding: 4px 8px; border-radius: 6px; border-right: 3px solid var(--gold-color); }
     .zkr-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 2px; }
     .zkr-count-btn { min-width: 60px; height: 34px; background: rgba(0, 212, 255, 0.15); border: 1px solid var(--accent-cyan); color: var(--accent-cyan); border-radius: 8px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; font-family: 'Cairo'; }
     .zkr-count-btn.completed { background: rgba(16, 185, 129, 0.2); border-color: var(--success); color: var(--success); }
 
-    .lecture-title { font-size: 0.95rem; font-weight: 700; color: var(--accent-cyan); }
+    .lecture-title, .info-title { font-size: 0.95rem; font-weight: 700; color: var(--accent-cyan); }
     .lecture-sheikh { font-size: 0.78rem; color: var(--gold-color); font-weight: 600; }
+    .info-desc { font-size: 0.9rem; line-height: 1.6; color: var(--text-main); }
   </style>
 </head>
 <body>
@@ -160,9 +152,11 @@
     <nav>
       <a onclick="showSection('home')" id="nav-home" class="active">الرئيسية</a>
       <a onclick="showSection('quran')" id="nav-quran">القرآن الكريم</a>
-      <a onclick="showSection('lectures')" id="nav-lectures">المحاضرات</a>
+      <a onclick="showSection('hadith')" id="nav-hadith">أحاديث صحيحة</a>
       <a onclick="showSection('azkar-morning')" id="nav-azkar-morning">أذكار الصباح</a>
       <a onclick="showSection('azkar-evening')" id="nav-azkar-evening">أذكار المساء</a>
+      <a onclick="showSection('lectures')" id="nav-lectures">المحاضرات</a>
+      <a onclick="showSection('info')" id="nav-info">معلومات قيمة</a>
       <a onclick="showSection('tasbeeh')" id="nav-tasbeeh">التسبيح</a>
     </nav>
   </header>
@@ -199,15 +193,30 @@
         <div class="card-title">القرآن الكريم</div>
         <div class="card-desc">114 سورة قراءة واستماع مباشر</div>
       </div>
+      <div class="card" onclick="showSection('hadith')">
+        <div class="card-icon">📜</div>
+        <div class="card-title">أحاديث صحيحة</div>
+        <div class="card-desc">من صحيح البخاري ومسلم</div>
+      </div>
+      <div class="card" onclick="showSection('azkar-morning')">
+        <div class="card-icon">☀️</div>
+        <div class="card-title">أذكار الصباح</div>
+        <div class="card-desc">كاملة مع عدادات التكرار</div>
+      </div>
+      <div class="card" onclick="showSection('azkar-evening')">
+        <div class="card-icon">🌙</div>
+        <div class="card-title">أذكار المساء</div>
+        <div class="card-desc">كاملة مع عدادات التكرار</div>
+      </div>
       <div class="card" onclick="showSection('lectures')">
         <div class="card-icon">🎙️</div>
         <div class="card-title">المحاضرات</div>
         <div class="card-desc">دروس الشيخ الشعراوي والحويني</div>
       </div>
-      <div class="card" onclick="showSection('azkar-morning')">
-        <div class="card-icon">☀️</div>
-        <div class="card-title">أذكار الصباح</div>
-        <div class="card-desc">حصن المسلم مع عدادات التكرار</div>
+      <div class="card" onclick="showSection('info')">
+        <div class="card-icon">💡</div>
+        <div class="card-title">معلومات قيمة</div>
+        <div class="card-desc">فوائد وفتاوى وأحكام إيمانية</div>
       </div>
       <div class="card" onclick="showSection('tasbeeh')">
         <div class="card-icon">📿</div>
@@ -249,7 +258,6 @@
         <div class="audio-player-title" id="audio-title-display">استماع للقرآن الكريم</div>
         <button class="play-btn-custom" onclick="forcePlayAudio()">▶ تشغيل / إيقاف الصوت</button>
         <audio id="main-audio-player" controls preload="auto" onerror="handleAudioError()"></audio>
-        <div id="audio-status-msg" style="font-size:0.75rem; color:var(--gold-color); margin-top:4px;"></div>
       </div>
 
       <div class="surah-reader-box">
@@ -261,6 +269,24 @@
       <div style="margin-bottom: 10px; color: var(--text-muted); font-size: 0.8rem;">اضغط على السورة لمطالعتها واستماعها فوراً:</div>
       <div class="quran-grid" id="quran-surah-list"></div>
     </div>
+  </div>
+
+  <!-- قسم الأحاديث الصحيحة -->
+  <div id="view-hadith" class="view-section">
+    <div class="section-header-bar">
+      <h2 class="section-title">📜 أحاديث نبوية صحيحة</h2>
+      <button class="back-btn" onclick="showSection('home')">رجوع ↩</button>
+    </div>
+    <div class="hadith-list" id="hadith-container"></div>
+  </div>
+
+  <!-- قسم المعلومات الإسلامية -->
+  <div id="view-info" class="view-section">
+    <div class="section-header-bar">
+      <h2 class="section-title">💡 معلومات وتنبيهات إيمانية قيمة</h2>
+      <button class="back-btn" onclick="showSection('home')">رجوع ↩</button>
+    </div>
+    <div class="info-list" id="info-container"></div>
   </div>
 
   <!-- قسم المحاضرات الإيمانية -->
@@ -275,7 +301,6 @@
         <div class="lecture-sheikh">الشيخ محمد متولي الشعراوي</div>
         <audio controls preload="metadata">
           <source src="https://server11.mp3quran.net/download/shaarawi/001.mp3" type="audio/mp3">
-          متصفحك لا يدعم تشغيل الصوت.
         </audio>
       </div>
       <div class="lecture-card">
@@ -283,7 +308,6 @@
         <div class="lecture-sheikh">الشيخ محمد متولي الشعراوي</div>
         <audio controls preload="metadata">
           <source src="https://server11.mp3quran.net/download/shaarawi/002.mp3" type="audio/mp3">
-          متصفحك لا يدعم تشغيل الصوت.
         </audio>
       </div>
       <div class="lecture-card">
@@ -291,7 +315,6 @@
         <div class="lecture-sheikh">الشيخ أبو إسحاق الحويني</div>
         <audio controls preload="metadata">
           <source src="https://media.blubrry.com/muslim_lectures/archive.org/download/Heweny_Lectures/01_Heweny.mp3" type="audio/mp3">
-          متصفحك لا يدعم تشغيل الصوت.
         </audio>
       </div>
       <div class="lecture-card">
@@ -299,7 +322,6 @@
         <div class="lecture-sheikh">الشيخ أبو إسحاق الحويني</div>
         <audio controls preload="metadata">
           <source src="https://media.blubrry.com/muslim_lectures/archive.org/download/Heweny_Lectures/02_Heweny.mp3" type="audio/mp3">
-          متصفحك لا يدعم تشغيل الصوت.
         </audio>
       </div>
     </div>
@@ -364,7 +386,6 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // تفعيل إشعار الصلاة على النبي كل 15 دقيقة
   function requestNotificationPermission() {
     if ('Notification' in window) {
       Notification.requestPermission().then(permission => {
@@ -430,7 +451,6 @@
     document.getElementById('quran-header-title').innerText = `📖 سورة ${name}`;
     
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
     updateAudioSource();
 
     const textDisplay = document.getElementById('surah-text-content');
@@ -475,14 +495,6 @@
     const audioPlayer = document.getElementById('main-audio-player');
     audioPlayer.src = sources[serverFallbackIndex] || sources[0];
     audioPlayer.load();
-
-    if ('mediaSession' in navigator) {
-      navigator.mediaSession.metadata = new MediaMetadata({
-        title: `سورة ${currentSurahName}`,
-        artist: reciterName,
-        album: 'الهدى - القرآن الكريم'
-      });
-    }
   }
 
   function handleAudioError() {
@@ -555,17 +567,27 @@
     document.getElementById('tasbeeh-count').innerText = tasbeehValue;
   }
 
-  // الأذكار
+  // الأذكار الكاملة
   const morningData = [
-    { text: "أَعُوذُ بِاللهِ مِنْ الشَّيْطَانِ الرَّجِيمِ: {اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ...}", fadhyl: "من قالها حين يصبح أُجير من الجن حتى يمسي.", count: 1 },
-    { text: "بِسْمِ اللهِ الرَّحْمنِ الرَّحِيمِ: {قُلْ هُوَ اللَّهُ أَحَدٌ...}، {قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ...}، {قُلْ أَعُوذُ بِرَبِّ النَّاسِ...}", fadhyl: "تكفيه من كل شيء.", count: 3 },
-    { text: "أَصْبَحْنَا وَأَصْبَحَ المُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ، لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ.", fadhyl: "", count: 1 },
-    { text: "اللَّهُمَّ أَنْتَ رَبِّي لاَ إِلَهَ إِلاَّ أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ...", fadhyl: "سيد الاستغفار: من قالها دخل الجنة.", count: 1 }
+    { text: "أَعُوذُ بِاللهِ مِنْ الشَّيْطَانِ الرَّجِيمِ: {اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلاَّ بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلاَ يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلاَّ بِمَا شَاء وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالأَرْضَ وَلاَ يَؤُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ}.", fadhyl: "من قالها حين يصبح أُجير من الجن حتى يمسي.", count: 1 },
+    { text: "بِسْمِ اللهِ الرَّحْمنِ الرَّحِيمِ: {قُلْ هُوَ اللَّهُ أَحَدٌ...}، {قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ...}، {قُلْ أَعُوذُ بِرَبِّ النَّاسِ...}", fadhyl: "من قالها حين يصبح وحين يمسي ثلاث مرات تكفيه من كل شيء.", count: 3 },
+    { text: "أَصْبَحْنَا وَأَصْبَحَ المُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ، لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ المُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.", fadhyl: "", count: 1 },
+    { text: "اللَّهُمَّ أَنْتَ رَبِّي لاَ إِلَهَ إِلاَّ أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لاَ يَغْفِرُ الذُّنُوبَ إِلاَّ أَنْتَ.", fadhyl: "سيد الاستغفار: من قالها موقناً بها ومات من يومه دخل الجنة.", count: 1 },
+    { text: "رَضِيتُ بِاللَّهِ رَبَّاً، وَبِالإِسْلاَمِ دِينَاً، وَبِمُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ نَبِيَّاً.", fadhyl: "من قالها حين يصبح وحين يمسي كان حقاً على الله أن يرضيه.", count: 3 },
+    { text: "بِسْمِ اللَّهِ الَّذِي لاَ يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الأَرْضِ وَلاَ فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ.", fadhyl: "لم يضره من الله شيء.", count: 3 },
+    { text: "اللَّهُمَّ إِنِّي أَصْبَحْتُ أُشْهِدُكَ وَأُشْهِدُ حَمَلَةَ عَرْشِكَ، وَمَلاَئِكَتَكَ وَجَمِيعَ خَلْقِكَ، أَنَّكَ أَنْتَ اللَّهُ لاَ إِلَهَ إِلاَّ أَنْتَ وَحْدَكَ لاَ شَرِيكَ لَكَ، وَأَنَّ مُحَمَّدَاً عَبْدُكَ وَرَسُولُكَ.", fadhyl: "من قالها أعتد الله ربع جسده من النار، ومن قالها أربعاً أعتقه الله كاملاً.", count: 4 },
+    { text: "يا حَيُّ يا قَيُّومُ بِرَحْمَتِكِ أَسْتَغِيثُ أَصْلِحْ لِي شَأْنِي كُلَّهُ وَلا تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ.", fadhyl: "دعاء كشف الهم والتيسير.", count: 1 },
+    { text: "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ: عَدَدَ خَلْقِهِ، وَرِضَا نَفْسِهِ، وَزِنَةَ عَرْشِهِ، وَمِدَادَ كَلِمَاتِهِ.", fadhyl: "من أعظم الأذكار أجراً.", count: 3 }
   ];
 
   const eveningData = [
-    { text: "أَعُوذُ بِاللهِ مِنْ الشَّيْطَانِ الرَّجِيمِ: {اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ...}", fadhyl: "من قالها حين يمسي أُجير من الجن حتى يصبح.", count: 1 },
-    { text: "بِسْمِ اللهِ الرَّحْمنِ الرَّحِيمِ: {قُلْ هُوَ اللَّهُ أَحَدٌ...}، {قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ...}، {قُلْ أَعُوذُ بِرَبِّ النَّاسِ...}", fadhyl: "تكفيه من كل شيء.", count: 3 }
+    { text: "أَعُوذُ بِاللهِ مِنْ الشَّيْطَانِ الرَّجِيمِ: {اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ...}.", fadhyl: "من قالها حين يمسي أُجير من الجن حتى يصبح.", count: 1 },
+    { text: "بِسْمِ اللهِ الرَّحْمنِ الرَّحِيمِ: {قُلْ هُوَ اللَّهُ أَحَدٌ...}، {قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ...}، {قُلْ أَعُوذُ بِرَبِّ النَّاسِ...}", fadhyl: "تكفيه من كل شيء.", count: 3 },
+    { text: "أَمْسَيْنَا وَأَمْسَى المُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ، لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ المُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.", fadhyl: "", count: 1 },
+    { text: "اللَّهُمَّ أَنْتَ رَبِّي لاَ إِلَهَ إِلاَّ أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ...", fadhyl: "سيد الاستغفار.", count: 1 },
+    { text: "أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ.", fadhyl: "من قالها لم تضره حمة أو ليلة مسائه.", count: 3 },
+    { text: "رَضِيتُ بِاللَّهِ رَبَّاً، وَبِالإِسْلاَمِ دِينَاً، وَبِمُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ نَبِيَّاً.", fadhyl: "كان حقاً على الله أن يرضيه.", count: 3 },
+    { text: "اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى نَبِيِّنَا مُحَمَّدٍ.", fadhyl: "من صلى عليّ حين يصبح وحين يمسي عشراً أدركته شفاعتي.", count: 10 }
   ];
 
   function renderAzkarList(listData, containerId) {
@@ -596,6 +618,52 @@
   renderAzkarList(morningData, 'morning-azkar-container');
   renderAzkarList(eveningData, 'evening-azkar-container');
 
+  // الأحاديث الصحيحة
+  const hadithData = [
+    { text: "إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى، فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى دُنْيَا يُصِيبُهَا، أَوْ إِلَى امْرَأَةٍ يَنْكِحُهَا، فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ.", rawi: "رواه البخاري ومسلم - عن عمر بن الخطاب رضي الله عنه" },
+    { text: "مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا، سَهَّلَ اللَّهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّةِ.", rawi: "رواه مسلم - عن أبي هريرة رضي الله عنه" },
+    { text: "لاَ يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ.", rawi: "رواه البخاري ومسلم - عن أنس بن مالك رضي الله عنه" },
+    { text: "المُسْلِمُ مَنْ سَلِمَ المُسْلِمُونَ مِنْ لِسَانِهِ وَيَدِهِ، وَالمُهَاجِرُ مَنْ هَجَرَ مَا نَهَى اللَّهُ عَنْهُ.", rawi: "رواه البخاري - عن عبد الله بن عمرو رضي الله عنهما" },
+    { text: "احْفَظِ اللَّهَ يَحْفَظْكَ، احْفَظِ اللَّهَ تَجِدْهُ تُجَاهَكَ، إِذَا سَأَلْتَ فَاسْأَلِ اللَّهَ، وَإِذَا اسْتَعَنْتَ فَاسْتَعِنْ بِاللَّهِ.", rawi: "رواه الترمذي وقال حديث حسن صحيح - عن ابن عباس رضي الله عنهما" }
+  ];
+
+  function renderHadithList() {
+    const container = document.getElementById('hadith-container');
+    container.innerHTML = "";
+    hadithData.forEach(h => {
+      const card = document.createElement('div');
+      card.className = 'hadith-card';
+      card.innerHTML = `
+        <div class="hadith-text">"${h.text}"</div>
+        <div class="hadith-rawi">📌 ${h.rawi}</div>
+      `;
+      container.appendChild(card);
+    });
+  }
+  renderHadithList();
+
+  // المعلومات القيمة
+  const infoData = [
+    { title: "فضل قيام الليل وصلاة الوتر", desc: "قيام الليل هو شرف المؤمن، ووقتها يبتدئ من بعد صلاة العشاء إلى طلوع الفجر، وأفضل وقتها هو الثلث الأخير من الليل حيث ينزل ربنا تبارك وتعالى إلى السماء الدنيا." },
+    { title: "أفضل أوقات استجابة الدعاء", desc: "1. بين الأذان والإقامة.\n2. أثناء السجود في الصلاة.\n3. الثلث الأخير من الليل.\n4. آخر ساعة من يوم الجمعة قبل المغرب." },
+    { title: "شروط إجابة الدعاء", desc: "الإخلاص لله، وحضور القلب أثناء الدعاء، وطيب المأكل والمشرب، وعدم الاستعجال كأن يقول (دعوت ولم يستجب لي)." }
+  ];
+
+  function renderInfoList() {
+    const container = document.getElementById('info-container');
+    container.innerHTML = "";
+    infoData.forEach(i => {
+      const card = document.createElement('div');
+      card.className = 'info-card';
+      card.innerHTML = `
+        <div class="info-title">💡 ${i.title}</div>
+        <div class="info-desc">${i.desc}</div>
+      `;
+      container.appendChild(card);
+    });
+  }
+  renderInfoList();
+
   // آية اليوم
   const dailyVerses = [
     "﴿ إِنَّ مَعَ الْعُسْرِ يُسْرًا ﴾ — سورة الشرح",
@@ -604,7 +672,7 @@
   ];
   document.getElementById('daily-verse-content').innerText = dailyVerses[Math.floor(Math.random() * dailyVerses.length)];
 
-  // جلب مواقيت الصلاة أوتوماتيكياً
+  // مواقيت الصلاة
   async function fetchLivePrayerTimes() {
     try {
       const res = await fetch('https://api.aladhan.com/v1/timingsByCity?city=Cairo&country=Egypt&method=5');
@@ -626,7 +694,6 @@
 
   fetchLivePrayerTimes();
 
-  // تفعيل الـ Service Worker
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('./sw.js').catch(()=>{});

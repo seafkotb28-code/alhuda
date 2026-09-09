@@ -167,30 +167,32 @@
     </nav>
   </header>
 
-  <button class="notification-btn" onclick="requestNotificationPermission()">🔔 تفعيل إشعار "صلِّ على النبي" كل 15 دقيقة</button>
-
-  <div class="daily-verse-card">
-    <div class="daily-verse-title">📖 آية اليوم</div>
-    <div class="daily-verse-text" id="daily-verse-content">جاري التحديث...</div>
-  </div>
-
-  <div class="prayer-banner">
-    <div class="prayer-header">
-      <div class="prayer-title">🕌 مواقيت الصلاة (تحديث أوتوماتيكي)</div>
-      <div class="next-prayer" id="next-prayer-text">جاري جلب المواقيت...</div>
-    </div>
-    <div class="prayer-times-grid">
-      <div class="prayer-item" id="p-fajr"><div class="prayer-name">الفجر</div><div class="prayer-time" id="time-fajr">--:--</div></div>
-      <div class="prayer-item" id="p-sunrise"><div class="prayer-name">الشروق</div><div class="prayer-time" id="time-sunrise">--:--</div></div>
-      <div class="prayer-item" id="p-dhuhr"><div class="prayer-name">الظهر</div><div class="prayer-time" id="time-dhuhr">--:--</div></div>
-      <div class="prayer-item" id="p-asr"><div class="prayer-name">العصر</div><div class="prayer-time" id="time-asr">--:--</div></div>
-      <div class="prayer-item" id="p-maghrib"><div class="prayer-name">المغرب</div><div class="prayer-time" id="time-maghrib">--:--</div></div>
-      <div class="prayer-item" id="p-isha"><div class="prayer-name">العشاء</div><div class="prayer-time" id="time-isha">--:--</div></div>
-    </div>
-  </div>
-
   <!-- الشاشة الرئيسية -->
   <div id="view-home" class="view-section active-view" style="background:transparent; border:none; padding:0;">
+    
+    <button class="notification-btn" onclick="requestNotificationPermission()">🔔 تفعيل إشعار "صلِّ على النبي" كل 15 دقيقة</button>
+
+    <div class="daily-verse-card">
+      <div class="daily-verse-title">📖 آية اليوم</div>
+      <div class="daily-verse-text" id="daily-verse-content">جاري التحديث...</div>
+    </div>
+
+    <!-- مواقيت الصلاة تظهر في الرئيسية فقط -->
+    <div class="prayer-banner">
+      <div class="prayer-header">
+        <div class="prayer-title">🕌 مواقيت الصلاة (تحديث أوتوماتيكي)</div>
+        <div class="next-prayer" id="next-prayer-text">جاري جلب المواقيت...</div>
+      </div>
+      <div class="prayer-times-grid">
+        <div class="prayer-item" id="p-fajr"><div class="prayer-name">الفجر</div><div class="prayer-time" id="time-fajr">--:--</div></div>
+        <div class="prayer-item" id="p-sunrise"><div class="prayer-name">الشروق</div><div class="prayer-time" id="time-sunrise">--:--</div></div>
+        <div class="prayer-item" id="p-dhuhr"><div class="prayer-name">الظهر</div><div class="prayer-time" id="time-dhuhr">--:--</div></div>
+        <div class="prayer-item" id="p-asr"><div class="prayer-name">العصر</div><div class="prayer-time" id="time-asr">--:--</div></div>
+        <div class="prayer-item" id="p-maghrib"><div class="prayer-name">المغرب</div><div class="prayer-time" id="time-maghrib">--:--</div></div>
+        <div class="prayer-item" id="p-isha"><div class="prayer-name">العشاء</div><div class="prayer-time" id="time-isha">--:--</div></div>
+      </div>
+    </div>
+
     <div class="cards-grid">
       <div class="card" onclick="showSection('quran')">
         <div class="card-icon">📖</div>
@@ -269,31 +271,35 @@
     </div>
     <div class="lecture-list">
       <div class="lecture-card">
-        <div class="lecture-title">تفسير خواطر القرآن - مقدمة التفسير</div>
+        <div class="lecture-title">تفسير سورة الفاتحة والأعمال بالنيات</div>
         <div class="lecture-sheikh">الشيخ محمد متولي الشعراوي</div>
-        <audio controls preload="none">
+        <audio controls preload="metadata">
           <source src="https://server11.mp3quran.net/download/shaarawi/001.mp3" type="audio/mp3">
+          متصفحك لا يدعم تشغيل الصوت.
         </audio>
       </div>
       <div class="lecture-card">
-        <div class="lecture-title">قصص الأنبياء - حكمة الابتلاء</div>
+        <div class="lecture-title">خواطر إيمانية وحكمة الابتلاء</div>
         <div class="lecture-sheikh">الشيخ محمد متولي الشعراوي</div>
-        <audio controls preload="none">
+        <audio controls preload="metadata">
           <source src="https://server11.mp3quran.net/download/shaarawi/002.mp3" type="audio/mp3">
+          متصفحك لا يدعم تشغيل الصوت.
         </audio>
       </div>
       <div class="lecture-card">
-        <div class="lecture-title">مدرسة التربية وإصلاح القلوب</div>
+        <div class="lecture-title">أسباب شرح الصدر وإصلاح القلوب</div>
         <div class="lecture-sheikh">الشيخ أبو إسحاق الحويني</div>
-        <audio controls preload="none">
-          <source src="https://archive.org/download/Heweny_Lectures/01_Heweny.mp3" type="audio/mp3">
+        <audio controls preload="metadata">
+          <source src="https://media.blubrry.com/muslim_lectures/archive.org/download/Heweny_Lectures/01_Heweny.mp3" type="audio/mp3">
+          متصفحك لا يدعم تشغيل الصوت.
         </audio>
       </div>
       <div class="lecture-card">
-        <div class="lecture-title">فضل الصلاة على النبي والتعلق بالخير</div>
+        <div class="lecture-title">مقتضيات محبة النبي ﷺ والعمل بسنته</div>
         <div class="lecture-sheikh">الشيخ أبو إسحاق الحويني</div>
-        <audio controls preload="none">
-          <source src="https://archive.org/download/Heweny_Lectures/02_Heweny.mp3" type="audio/mp3">
+        <audio controls preload="metadata">
+          <source src="https://media.blubrry.com/muslim_lectures/archive.org/download/Heweny_Lectures/02_Heweny.mp3" type="audio/mp3">
+          متصفحك لا يدعم تشغيل الصوت.
         </audio>
       </div>
     </div>
@@ -418,7 +424,6 @@
     currentSurahName = name;
     serverFallbackIndex = 0;
 
-    // نقل العرض فوراً لأعلى الصفحة مع إظهار خانة السورة مباشرة
     document.getElementById('surah-list-container').style.display = 'none';
     document.getElementById('surah-reading-container').style.display = 'block';
     document.getElementById('quran-back-btn').style.display = 'inline-block';
@@ -599,7 +604,7 @@
   ];
   document.getElementById('daily-verse-content').innerText = dailyVerses[Math.floor(Math.random() * dailyVerses.length)];
 
-  // جلب مواقيت الصلاة أوتوماتيكياً حسب التاريخ والموقع اليومي
+  // جلب مواقيت الصلاة أوتوماتيكياً
   async function fetchLivePrayerTimes() {
     try {
       const res = await fetch('https://api.aladhan.com/v1/timingsByCity?city=Cairo&country=Egypt&method=5');

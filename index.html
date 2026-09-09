@@ -165,6 +165,7 @@
     .lecture-title, .info-title { font-size: 0.95rem; font-weight: 700; color: var(--accent-cyan); }
     .lecture-sheikh { font-size: 0.78rem; color: var(--gold-color); font-weight: 600; }
     .info-desc { font-size: 0.9rem; line-height: 1.6; color: var(--text-main); }
+    .lecture-link { display: block; width: fit-content; margin: 6px auto 0; text-decoration: none; }
   </style>
 </head>
 <body>
@@ -193,17 +194,6 @@
     <div class="daily-verse-card">
       <div class="daily-verse-title">📖 آية اليوم</div>
       <div class="daily-verse-text" id="daily-verse-content">«فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ»</div>
-    </div>
-
-    <!-- خانة معلومات قيمة الخارجية المطلوبة -->
-    <div class="valuable-info-banner" onclick="showSection('info')">
-      <div class="valuable-info-header">
-        <div class="valuable-info-title">💡 معلومة قيمة اليوم</div>
-        <span style="font-size:0.75rem; color:var(--gold-color); font-weight:bold;">عرض المزيد ←</span>
-      </div>
-      <div class="valuable-info-body">
-        <strong>أفضل أوقات استجابة الدعاء:</strong> الثلث الأخير من الليل، وبين الأذان والإقامة، وعند نزول المطر، وساعة الاستجابة يوم الجمعة (بين العصر والمغرب).
-      </div>
     </div>
 
     <!-- مواقيت الصلاة تظهر في الرئيسية فقط -->
@@ -257,6 +247,17 @@
         <div class="card-icon">📿</div>
         <div class="card-title">التسبيح</div>
         <div class="card-desc">سبحة إلكترونية واهتزاز تفاعلي</div>
+      </div>
+    </div>
+
+    <!-- تظهر معلومة اليوم في آخر الصفحة الرئيسية -->
+    <div class="valuable-info-banner" onclick="showSection('info')">
+      <div class="valuable-info-header">
+        <div class="valuable-info-title">💡 معلومة قيمة اليوم</div>
+        <span style="font-size:0.75rem; color:var(--gold-color); font-weight:bold;">عرض المزيد ←</span>
+      </div>
+      <div class="valuable-info-body">
+        <strong>أفضل أوقات استجابة الدعاء:</strong> الثلث الأخير من الليل، وبين الأذان والإقامة، وعند نزول المطر، وساعة الاستجابة يوم الجمعة (بين العصر والمغرب).
       </div>
     </div>
   </div>
@@ -324,7 +325,7 @@
     <div class="info-list" id="info-container"></div>
   </div>
 
-  <!-- قسم المحاضرات الإيمانية مع السيرفرات المحدثة الموثوقة -->
+  <!-- قسم المحاضرات الإيمانية -->
   <div id="view-lectures" class="view-section">
     <div class="section-header-bar">
       <h2 class="section-title">🎙️ المحاضرات والدروس الإسلامية</h2>
@@ -334,38 +335,22 @@
       <div class="lecture-card">
         <div class="lecture-title">تفسير سورة الفاتحة والأعمال بالنيات</div>
         <div class="lecture-sheikh">الشيخ محمد متولي الشعراوي</div>
-        <audio controls preload="none">
-          <source src="https://archive.org/download/Shaarawy-Tafseer/001-Al-Fatiha.mp3" type="audio/mp3">
-          <source src="https://server11.mp3quran.net/download/shaarawi/001.mp3" type="audio/mp3">
-          متصفحك لا يدعم تشغيل الصوت.
-        </audio>
+        <a class="play-btn-custom lecture-link" href="https://www.youtube.com/watch?v=O84qzzW08dw" target="_blank" rel="noopener noreferrer">▶ تشغيل المحاضرة بالصوت</a>
       </div>
       <div class="lecture-card">
-        <div class="lecture-title">خواطر إيمانية وحكمة الابتلاء</div>
+        <div class="lecture-title">تفسير سورة الفاتحة</div>
         <div class="lecture-sheikh">الشيخ محمد متولي الشعراوي</div>
-        <audio controls preload="none">
-          <source src="https://archive.org/download/Shaarawy-Tafseer/002-Al-Baqarah.mp3" type="audio/mp3">
-          <source src="https://server11.mp3quran.net/download/shaarawi/002.mp3" type="audio/mp3">
-          متصفحك لا يدعم تشغيل الصوت.
-        </audio>
+        <a class="play-btn-custom lecture-link" href="https://www.youtube.com/watch?v=eoWJVcYrDH8" target="_blank" rel="noopener noreferrer">▶ تشغيل المحاضرة بالصوت</a>
       </div>
       <div class="lecture-card">
-        <div class="lecture-title">أسباب شرح الصدر وإصلاح القلوب</div>
+        <div class="lecture-title">هكذا الحب يا فتى</div>
         <div class="lecture-sheikh">الشيخ أبو إسحاق الحويني</div>
-        <audio controls preload="none">
-          <source src="https://archive.org/download/El-Heweny-Audio/001-Islah-Alqoloub.mp3" type="audio/mp3">
-          <source src="https://media.blubrry.com/muslim_lectures/archive.org/download/Heweny_Lectures/01_Heweny.mp3" type="audio/mp3">
-          متصفحك لا يدعم تشغيل الصوت.
-        </audio>
+        <a class="play-btn-custom lecture-link" href="https://www.youtube.com/watch?v=9Ke6EH7iaZg" target="_blank" rel="noopener noreferrer">▶ تشغيل المحاضرة بالصوت</a>
       </div>
       <div class="lecture-card">
         <div class="lecture-title">مقتضيات محبة النبي ﷺ والعمل بسنته</div>
         <div class="lecture-sheikh">الشيخ أبو إسحاق الحويني</div>
-        <audio controls preload="none">
-          <source src="https://archive.org/download/El-Heweny-Audio/002-Mahabat-Alnabi.mp3" type="audio/mp3">
-          <source src="https://media.blubrry.com/muslim_lectures/archive.org/download/Heweny_Lectures/02_Heweny.mp3" type="audio/mp3">
-          متصفحك لا يدعم تشغيل الصوت.
-        </audio>
+        <a class="play-btn-custom lecture-link" href="https://www.youtube.com/watch?v=2rl_Z60Ua48" target="_blank" rel="noopener noreferrer">▶ تشغيل المحاضرة بالصوت</a>
       </div>
     </div>
   </div>
@@ -452,6 +437,82 @@
         icon: 'https://img.icons8.com/color/512/quran.png'
       });
     }
+  }
+
+  // مواقيت الصلاة: تُجلب من موقع المستخدم في كل يوم وتُخزن كنسخة احتياطية.
+  const prayerNames = {
+    Fajr: 'الفجر', Sunrise: 'الشروق', Dhuhr: 'الظهر',
+    Asr: 'العصر', Maghrib: 'المغرب', Isha: 'العشاء'
+  };
+  let todayPrayerTimes = null;
+
+  function prayerDateKey() {
+    return new Intl.DateTimeFormat('en-CA', {
+      year: 'numeric', month: '2-digit', day: '2-digit'
+    }).format(new Date());
+  }
+
+  function formatPrayerTime(value) {
+    const match = String(value).match(/(\d{1,2}):(\d{2})/);
+    if (!match) return '--:--';
+    const date = new Date();
+    date.setHours(Number(match[1]), Number(match[2]), 0, 0);
+    return new Intl.DateTimeFormat('ar-EG', {
+      hour: 'numeric', minute: '2-digit', hour12: true
+    }).format(date);
+  }
+
+  function updatePrayerDisplay(timings, message) {
+    todayPrayerTimes = timings;
+    const bindings = {
+      Fajr: 'fajr', Sunrise: 'sunrise', Dhuhr: 'dhuhr',
+      Asr: 'asr', Maghrib: 'maghrib', Isha: 'isha'
+    };
+    Object.entries(bindings).forEach(([apiName, elementName]) => {
+      document.getElementById(`time-${elementName}`).textContent = formatPrayerTime(timings[apiName]);
+    });
+    updateNextPrayer(message);
+  }
+
+  function updateNextPrayer(prefix = '') {
+    if (!todayPrayerTimes) return;
+    const now = new Date();
+    const ordered = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
+    let next = ordered.find(name => {
+      const [hours, minutes] = String(todayPrayerTimes[name]).match(/\d{1,2}:\d{2}/)[0].split(':').map(Number);
+      const time = new Date();
+      time.setHours(hours, minutes, 0, 0);
+      return time > now;
+    });
+    document.getElementById('next-prayer-text').textContent = next
+      ? `${prefix ? `${prefix} · ` : ''}القادمة: ${prayerNames[next]} ${formatPrayerTime(todayPrayerTimes[next])}`
+      : `${prefix ? `${prefix} · ` : ''}انتهت مواقيت اليوم`;
+  }
+
+  async function loadPrayerTimes(latitude, longitude) {
+    const date = prayerDateKey().split('-').reverse().join('-');
+    const url = `https://api.aladhan.com/v1/timings/${date}?latitude=${latitude}&longitude=${longitude}&method=5`;
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('تعذر جلب المواقيت');
+    const payload = await response.json();
+    const timings = payload.data.timings;
+    localStorage.setItem('alhoda-prayer-times', JSON.stringify({ date: prayerDateKey(), timings }));
+    updatePrayerDisplay(timings, 'بحسب موقعك');
+  }
+
+  function loadPrayerTimesForUser() {
+    const cached = JSON.parse(localStorage.getItem('alhoda-prayer-times') || 'null');
+    if (cached?.date === prayerDateKey()) updatePrayerDisplay(cached.timings, 'آخر تحديث محفوظ');
+    if (!navigator.geolocation) {
+      if (!cached) document.getElementById('next-prayer-text').textContent = 'المتصفح لا يدعم تحديد الموقع';
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      position => loadPrayerTimes(position.coords.latitude, position.coords.longitude)
+        .catch(() => { if (!cached) document.getElementById('next-prayer-text').textContent = 'تعذر تحديث مواقيت الصلاة'; }),
+      () => { if (!cached) document.getElementById('next-prayer-text').textContent = 'اسمح بالموقع لتظهر مواقيت منطقتك'; },
+      { enableHighAccuracy: false, timeout: 10000, maximumAge: 60 * 60 * 1000 }
+    );
   }
 
   const surahNames = [
@@ -624,6 +685,11 @@
     { text: "اللَّهُمَّ عَافِنِي فِي بَدَنِي، اللَّهُمَّ عَافِنِي فِي سَمْعِي، اللَّهُمَّ عَافِنِي فِي بَصَرِي، لاَ إِلَهَ إِلاَّ أَنْتَ. اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْكُفْرِ وَالْفَقْرِ، وَأَعُوذُ بِكَ مِنْ عَذَابِ الْقَبْرِ، لاَ إِلَهَ إِلاَّ أَنْتَ.", fadhyl: "دعاء حفظ الصحة والعافية.", count: 3 },
     { text: "اللَّهُمَّ صَلِّ وَسَلِّمْ وَبَارِكْ عَلَى نَبِيِّنَا مُحَمَّدٍ.", fadhyl: "من صلى عليّ حين يصبح عشراً وحين يمسي عشراً أدركته شفاعتي يوم القيامة.", count: 10 },
     { text: "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ.", fadhyl: "حُطَّتْ خَطَايَاهُ وَإِنْ كَانَتْ مِثْلَ زَبَدِ الْبَحْرِ.", count: 100 }
+    ,{ text: "اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ النُّشُورُ.", fadhyl: "دعاء ثابت عند الصباح.", count: 1 }
+    ,{ text: "اللَّهُمَّ مَا أَصْبَحَ بِي مِنْ نِعْمَةٍ أَوْ بِأَحَدٍ مِنْ خَلْقِكَ فَمِنْكَ وَحْدَكَ لَا شَرِيكَ لَكَ، فَلَكَ الْحَمْدُ وَلَكَ الشُّكْرُ.", fadhyl: "من قالها فقد أدى شكر يومه.", count: 1 }
+    ,{ text: "حَسْبِيَ اللَّهُ لَا إِلَهَ إِلَّا هُوَ، عَلَيْهِ تَوَكَّلْتُ، وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ.", fadhyl: "ذكر للتوكل والكفاية.", count: 7 }
+    ,{ text: "اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ.", fadhyl: "من جوامع دعاء العافية.", count: 1 }
+    ,{ text: "لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.", fadhyl: "ذكر عظيم الأجر والتحصين.", count: 100 }
   ];
 
   const eveningData = [
@@ -637,6 +703,11 @@
     { text: "يا حَيُّ يا قَيُّومُ بِرَحْمَتِكِ أَسْتَغِيثُ أَصْلِحْ لِي شَأْنِي كُلَّهُ وَلا تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ.", fadhyl: "دعاء حفظ الشأن وإصلاح الحال.", count: 1 },
     { text: "اللَّهُمَّ صَلِّ وَسَلِّمْ وَبَارِكْ عَلَى نَبِيِّنَا مُحَمَّدٍ.", fadhyl: "شفاعة النبي يوم القيامة.", count: 10 },
     { text: "أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ.", fadhyl: "تطهير ومحو للذنوب والسيئات.", count: 100 }
+    ,{ text: "اللَّهُمَّ بِكَ أَمْسَيْنَا، وَبِكَ أَصْبَحْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ الْمَصِيرُ.", fadhyl: "دعاء ثابت عند المساء.", count: 1 }
+    ,{ text: "اللَّهُمَّ مَا أَمْسَى بِي مِنْ نِعْمَةٍ أَوْ بِأَحَدٍ مِنْ خَلْقِكَ فَمِنْكَ وَحْدَكَ لَا شَرِيكَ لَكَ، فَلَكَ الْحَمْدُ وَلَكَ الشُّكْرُ.", fadhyl: "من قالها فقد أدى شكر ليلته.", count: 1 }
+    ,{ text: "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَالْعَجْزِ وَالْكَسَلِ، وَالْبُخْلِ وَالْجُبْنِ، وَضَلَعِ الدَّيْنِ وَغَلَبَةِ الرِّجَالِ.", fadhyl: "دعاء للهم والدين والعجز.", count: 1 }
+    ,{ text: "حَسْبِيَ اللَّهُ لَا إِلَهَ إِلَّا هُوَ، عَلَيْهِ تَوَكَّلْتُ، وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ.", fadhyl: "ذكر للتوكل والكفاية.", count: 7 }
+    ,{ text: "لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.", fadhyl: "ذكر عظيم الأجر والتحصين.", count: 100 }
   ];
 
   const hadithData = [
@@ -717,6 +788,11 @@
     renderAzkarList(eveningData, 'evening-azkar-container');
     renderHadithList();
     renderInfoList();
+    loadPrayerTimesForUser();
+    setInterval(() => updateNextPrayer(), 60 * 1000);
+    setInterval(() => {
+      if (new Date().getHours() === 0 && new Date().getMinutes() < 2) loadPrayerTimesForUser();
+    }, 60 * 1000);
   };
 </script>
 

@@ -79,7 +79,6 @@
     .section-title { color: var(--accent-cyan); margin: 0; font-size: 1.1rem; }
     .back-btn { background: rgba(255,255,255,0.05); border: 1px solid var(--card-border); color: var(--text-main); padding: 5px 12px; border-radius: 10px; cursor: pointer; font-size: 0.8rem; }
 
-    /* قائمة السور */
     .quran-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; max-height: 450px; overflow-y: auto; padding-left: 2px; }
     @media (min-width: 600px) { .quran-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); } }
     .surah-card-item { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 12px 8px; border-radius: 10px; cursor: pointer; text-align: center; }
@@ -87,12 +86,11 @@
     .surah-num { font-size: 0.75rem; color: var(--accent-cyan); font-weight: bold; }
     .surah-title-ar { font-size: 1.05rem; font-weight: bold; margin: 3px 0; }
 
-    /* مشغل الصوت والمشايخ */
     .audio-player-box {
       background: rgba(0, 212, 255, 0.05); border: 1px solid var(--accent-cyan);
       border-radius: 14px; padding: 14px; text-align: center; margin-bottom: 15px;
     }
-    .reciter-select-box {
+    .reciter-select-box, .timer-select-box {
       width: 100%; max-width: 350px; background: #101a2d; color: var(--accent-cyan);
       border: 1px solid var(--accent-cyan); padding: 8px 12px; border-radius: 10px;
       font-size: 0.9rem; outline: none; margin-bottom: 10px; text-align: center; cursor: pointer;
@@ -108,7 +106,6 @@
 
     .surah-reader-box { background: rgba(0, 0, 0, 0.3); border: 1px solid var(--card-border); border-radius: 14px; padding: 22px 16px; }
     
-    /* تكبير خط القرآن الكريم ليكون واضح وكبير جداً */
     .surah-text-display { 
       font-size: 2.1rem; 
       line-height: 2.6; 
@@ -119,7 +116,6 @@
       font-weight: bold;
     }
 
-    /* التسبيح */
     .tasbeeh-container { text-align: center; padding: 5px 0; }
     .tasbeeh-select { width: 100%; background: #101a2d; color: var(--accent-cyan); border: 1px solid var(--accent-cyan); padding: 10px; border-radius: 10px; font-size: 0.9rem; outline: none; margin-bottom: 12px; text-align: center; }
     .tasbeeh-phrase-display { font-size: 1.1rem; line-height: 1.6; min-height: 50px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; padding: 8px; background: rgba(255, 255, 255, 0.02); border-radius: 10px; }
@@ -128,7 +124,6 @@
     .tasbeeh-btn:active { transform: scale(0.9); }
     .reset-btn { margin-top: 12px; background: rgba(239, 68, 68, 0.15); border: 1px solid #ef4444; color: #ef4444; padding: 6px 16px; border-radius: 10px; cursor: pointer; font-size: 0.85rem; }
 
-    /* الأذكار */
     .azkar-list { display: flex; flex-direction: column; gap: 12px; }
     .zkr-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 8px; }
     .zkr-text { font-size: 1.1rem; line-height: 1.8; color: #f8fafc; text-align: justify; }
@@ -236,6 +231,20 @@
           <option value="ar.minshawi">الشيخ محمد صديق المنشاوي</option>
           <option value="ar.abdulbasitmurattal">الشيخ عبد الباسط عبد الصمد</option>
         </select>
+
+        <!-- مؤقت النوم عند النوم -->
+        <div style="margin: 10px 0;">
+          <label for="sleep-timer-select" style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:5px;">⏱️ مؤقت النوم (إيقاف تلقائي):</label>
+          <select id="sleep-timer-select" class="timer-select-box" onchange="setSleepTimer(this.value)">
+            <option value="0">المؤقت مغلق</option>
+            <option value="15">بعد 15 دقيقة</option>
+            <option value="30">بعد 30 دقيقة</option>
+            <option value="45">بعد 45 دقيقة</option>
+            <option value="60">بعد ساعة (60 دقيقة)</option>
+          </select>
+          <div id="timer-status" style="font-size:0.8rem; color:var(--gold-color); font-weight:bold;"></div>
+        </div>
+
         <div class="audio-player-title" id="audio-title-display">استماع للقرآن الكريم</div>
         <button class="play-btn-custom" onclick="forcePlayAudio()">▶ تشغيل / إيقاف الصوت</button>
         <audio id="main-audio-player" controls preload="auto" onerror="handleAudioError()"></audio>
@@ -386,8 +395,6 @@
     document.getElementById('audio-title-display').innerText = `استماع إلى سورة ${currentSurahName} - بصوت ${reciterName}`;
     
     let sources = [];
-    
-    // روابط الصوت من أكثر من سيرفر جبار ومباشر (Direct CDN)
     if (selectedIdentifier === "ar.alafasy") {
       sources = [
         `https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/${currentSurahNum}.mp3`,
@@ -413,10 +420,12 @@
     const audioPlayer = document.getElementById('main-audio-player');
     audioPlayer.src = sources[serverFallbackIndex] || sources[0];
     audioPlayer.load();
+
+    // تفعيل التشغيل في الخلفية وعلى شاشة القفل
+    setupMediaSession(currentSurahName, reciterName);
   }
 
   function handleAudioError() {
-    // إذا فشل السيرفر الأول يحول تلقائياً للسيرفر البديل
     if (serverFallbackIndex === 0) {
       serverFallbackIndex = 1;
       document.getElementById('audio-status-msg').innerText = "جاري التحويل لـ سيرفر صوتي بديل...";
@@ -441,6 +450,61 @@
   function changeReciter() {
     serverFallbackIndex = 0;
     updateAudioSource();
+  }
+
+  // إعداد التشغيل في الخلفية وشاشة القفل
+  function setupMediaSession(surahName, reciterName) {
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: `سورة ${surahName}`,
+        artist: reciterName,
+        album: 'الهدى - القرآن الكريم',
+      });
+
+      const audioPlayer = document.getElementById('main-audio-player');
+      navigator.mediaSession.setActionHandler('play', () => audioPlayer.play());
+      navigator.mediaSession.setActionHandler('pause', () => audioPlayer.pause());
+      navigator.mediaSession.setActionHandler('seekback', () => audioPlayer.currentTime -= 10);
+      navigator.mediaSession.setActionHandler('seekforward', () => audioPlayer.currentTime += 10);
+    }
+  }
+
+  // منطق مؤقت النوم (Sleep Timer)
+  let sleepTimerTimeout = null;
+  let timerCountdownInterval = null;
+
+  function setSleepTimer(minutes) {
+    if (sleepTimerTimeout) clearTimeout(sleepTimerTimeout);
+    if (timerCountdownInterval) clearInterval(timerCountdownInterval);
+
+    const statusSpan = document.getElementById('timer-status');
+    const minutesNum = parseInt(minutes);
+
+    if (minutesNum === 0) {
+      statusSpan.innerText = '';
+      return;
+    }
+
+    let totalSeconds = minutesNum * 60;
+
+    timerCountdownInterval = setInterval(() => {
+      totalSeconds--;
+      const m = Math.floor(totalSeconds / 60);
+      const s = totalSeconds % 60;
+      statusSpan.innerText = `⏳ سيتوقف الصوت خلال ${m}:${s < 10 ? '0' : ''}${s}`;
+
+      if (totalSeconds <= 0) {
+        clearInterval(timerCountdownInterval);
+      }
+    }, 1000);
+
+    sleepTimerTimeout = setTimeout(() => {
+      const audioPlayer = document.getElementById('main-audio-player');
+      if (audioPlayer) {
+        audioPlayer.pause();
+      }
+      statusSpan.innerText = '🛑 تم الإيقاف التلقائي بواسطة مؤقت النوم';
+    }, minutesNum * 60 * 1000);
   }
 
   function backToSurahList() {
@@ -573,19 +637,16 @@
 
   setInterval(updatePrayerCountdown, 1000);
   updatePrayerCountdown();
-</script>
 
-
-<script>
+  // تفعيل الـ Service Worker للأوفلاين
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('./sw.js')
-        .then(reg => console.log('جاهز للعمل بدون إنترنت'))
-        .catch(err => console.log('خطأ في التفعيل:', err));
+        .then(reg => console.log('Service Worker Ready'))
+        .catch(err => console.log('SW Error:', err));
     });
   }
-
-  
 </script>
+
 </body>
 </html>

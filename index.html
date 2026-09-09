@@ -4,15 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>الهدى - التطبيق الإسلامي الشامل</title>
+  
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#00d4ff">
+  <link rel="apple-touch-icon" href="https://img.icons8.com/color/512/quran.png">
+
+  <!-- خط Cairo المخصص للموبايل -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Amiri:wght@700&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg-dark: #0b0f19;
-      --card-bg: rgba(18, 26, 43, 0.85);
-      --card-border: rgba(0, 212, 255, 0.2);
+      --card-bg: rgba(18, 26, 43, 0.9);
+      --card-border: rgba(0, 212, 255, 0.25);
       --accent-cyan: #00d4ff;
-      --accent-glow: rgba(0, 212, 255, 0.3);
+      --accent-glow: rgba(0, 212, 255, 0.35);
       --text-main: #f0f4f8;
-      --text-muted: #94a3b8;
+      --text-muted: #a0aec0;
       --gold-color: #f59e0b;
       --success: #10b981;
     }
@@ -20,120 +30,125 @@
     * { box-sizing: border-box; transition: all 0.2s ease-in-out; -webkit-tap-highlight-color: transparent; }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Cairo', system-ui, -apple-system, sans-serif;
       background-color: var(--bg-dark);
-      background-image: radial-gradient(circle at 50% 15%, #102a45 0%, var(--bg-dark) 75%);
+      background-image: radial-gradient(circle at 50% 15%, #102a45 0%, var(--bg-dark) 80%);
       color: var(--text-main);
       margin: 0; padding: 0;
       direction: rtl; min-height: 100vh;
-      touch-action: manipulation;
+      font-size: 15px;
     }
 
-    .container { max-width: 1000px; margin: 0 auto; padding: 15px 12px; }
+    .container { max-width: 950px; margin: 0 auto; padding: 12px; }
 
     header {
       display: flex; justify-content: space-between; align-items: center;
-      padding-bottom: 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); margin-bottom: 15px;
+      padding-bottom: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 12px;
       flex-wrap: wrap; gap: 10px;
     }
 
-    .logo { font-size: 1.5rem; font-weight: bold; color: var(--accent-cyan); text-shadow: 0 0 12px var(--accent-glow); cursor: pointer; }
+    .logo { font-size: 1.6rem; font-weight: 800; color: var(--accent-cyan); text-shadow: 0 0 12px var(--accent-glow); cursor: pointer; }
 
-    nav { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 5px; width: 100%; }
-    nav a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; cursor: pointer; white-space: nowrap; padding: 6px 10px; background: rgba(255,255,255,0.03); border-radius: 8px; }
-    nav a:hover, nav a.active { color: var(--accent-cyan); background: rgba(0, 212, 255, 0.1); }
+    nav { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; width: 100%; scrollbar-width: none; }
+    nav::-webkit-scrollbar { display: none; }
+    nav a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 600; cursor: pointer; white-space: nowrap; padding: 6px 12px; background: rgba(255,255,255,0.04); border-radius: 10px; }
+    nav a:hover, nav a.active { color: var(--accent-cyan); background: rgba(0, 212, 255, 0.15); border: 1px solid rgba(0, 212, 255, 0.3); }
+
+    .notification-btn {
+      width: 100%; background: rgba(0, 212, 255, 0.1); border: 1px solid var(--accent-cyan); color: var(--accent-cyan);
+      padding: 8px; border-radius: 10px; font-weight: 700; margin-bottom: 12px; cursor: pointer; font-size: 0.85rem; text-align: center;
+    }
 
     .daily-verse-card {
       background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3);
-      border-radius: 16px; padding: 14px 16px; text-align: center; margin-bottom: 15px;
+      border-radius: 14px; padding: 12px 14px; text-align: center; margin-bottom: 12px;
     }
-    .daily-verse-title { color: var(--gold-color); font-weight: bold; font-size: 0.85rem; margin-bottom: 6px; }
-    .daily-verse-text { font-size: 1.05rem; line-height: 1.6; color: #fff; }
+    .daily-verse-title { color: var(--gold-color); font-weight: 700; font-size: 0.85rem; margin-bottom: 4px; }
+    .daily-verse-text { font-size: 1rem; font-weight: 600; color: #fff; line-height: 1.5; }
 
     .prayer-banner {
       background: var(--card-bg); border: 1px solid var(--card-border);
-      backdrop-filter: blur(12px); border-radius: 18px; padding: 15px; margin-bottom: 20px;
+      backdrop-filter: blur(12px); border-radius: 16px; padding: 14px; margin-bottom: 16px;
     }
-    .prayer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
-    .prayer-title { font-size: 0.95rem; font-weight: bold; color: var(--accent-cyan); }
-    .next-prayer { background: rgba(0, 212, 255, 0.1); border: 1px solid var(--accent-cyan); color: var(--accent-cyan); padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; }
-    .prayer-times-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; text-align: center; }
+    .prayer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 6px; }
+    .prayer-title { font-size: 0.9rem; font-weight: 700; color: var(--accent-cyan); }
+    .next-prayer { background: rgba(0, 212, 255, 0.12); border: 1px solid var(--accent-cyan); color: var(--accent-cyan); padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+    .prayer-times-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; text-align: center; }
     @media (min-width: 600px) { .prayer-times-grid { grid-template-columns: repeat(6, 1fr); } }
-    .prayer-item { padding: 8px 4px; border-radius: 10px; background: rgba(255, 255, 255, 0.02); }
-    .prayer-item.active-prayer { background: rgba(0, 212, 255, 0.15); border: 1px solid var(--accent-cyan); }
-    .prayer-name { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px; }
-    .prayer-time { font-size: 0.85rem; font-weight: bold; }
+    .prayer-item { padding: 8px 2px; border-radius: 10px; background: rgba(255, 255, 255, 0.03); }
+    .prayer-item.active-prayer { background: rgba(0, 212, 255, 0.2); border: 1px solid var(--accent-cyan); }
+    .prayer-name { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; margin-bottom: 2px; }
+    .prayer-time { font-size: 0.85rem; font-weight: 700; }
 
-    .cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; }
-    @media (min-width: 600px) { .cards-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); } }
-    .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 16px 12px; text-align: center; cursor: pointer; }
-    .card:active { transform: scale(0.97); }
-    .card-icon { font-size: 1.8rem; margin-bottom: 8px; color: var(--accent-cyan); }
-    .card-title { font-size: 1rem; font-weight: bold; margin-bottom: 4px; }
-    .card-desc { font-size: 0.75rem; color: var(--text-muted); }
+    .cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
+    @media (min-width: 600px) { .cards-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); } }
+    .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 14px 10px; text-align: center; cursor: pointer; }
+    .card:active { transform: scale(0.96); }
+    .card-icon { font-size: 1.8rem; margin-bottom: 6px; }
+    .card-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 2px; }
+    .card-desc { font-size: 0.72rem; color: var(--text-muted); }
 
-    .view-section { display: none; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 18px; padding: 18px 14px; margin-bottom: 20px; }
+    .view-section { display: none; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 16px 12px; margin-bottom: 16px; }
     .view-section.active-view { display: block; }
 
-    .section-header-bar { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 10px; margin-bottom: 15px; }
-    .section-title { color: var(--accent-cyan); margin: 0; font-size: 1.1rem; }
-    .back-btn { background: rgba(255,255,255,0.05); border: 1px solid var(--card-border); color: var(--text-main); padding: 5px 12px; border-radius: 10px; cursor: pointer; font-size: 0.8rem; }
+    .section-header-bar { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 8px; margin-bottom: 12px; }
+    .section-title { color: var(--accent-cyan); margin: 0; font-size: 1.05rem; font-weight: 700; }
+    .back-btn { background: rgba(255,255,255,0.06); border: 1px solid var(--card-border); color: var(--text-main); padding: 4px 10px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; font-weight: 600; }
 
-    .quran-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; max-height: 450px; overflow-y: auto; padding-left: 2px; }
-    @media (min-width: 600px) { .quran-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); } }
-    .surah-card-item { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 12px 8px; border-radius: 10px; cursor: pointer; text-align: center; }
-    .surah-card-item:active { background: rgba(0, 212, 255, 0.15); border-color: var(--accent-cyan); }
-    .surah-num { font-size: 0.75rem; color: var(--accent-cyan); font-weight: bold; }
-    .surah-title-ar { font-size: 1.05rem; font-weight: bold; margin: 3px 0; }
+    .quran-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; max-height: 480px; overflow-y: auto; padding-left: 2px; }
+    @media (min-width: 600px) { .quran-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); } }
+    .surah-card-item { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 10px 6px; border-radius: 10px; cursor: pointer; text-align: center; }
+    .surah-card-item:active { background: rgba(0, 212, 255, 0.18); border-color: var(--accent-cyan); }
+    .surah-num { font-size: 0.7rem; color: var(--accent-cyan); font-weight: 700; }
+    .surah-title-ar { font-size: 1rem; font-weight: 700; margin: 2px 0; }
 
     .audio-player-box {
-      background: rgba(0, 212, 255, 0.05); border: 1px solid var(--accent-cyan);
-      border-radius: 14px; padding: 14px; text-align: center; margin-bottom: 15px;
+      background: rgba(0, 212, 255, 0.06); border: 1px solid var(--accent-cyan);
+      border-radius: 12px; padding: 12px; text-align: center; margin-bottom: 12px;
     }
     .reciter-select-box, .timer-select-box {
-      width: 100%; max-width: 350px; background: #101a2d; color: var(--accent-cyan);
-      border: 1px solid var(--accent-cyan); padding: 8px 12px; border-radius: 10px;
-      font-size: 0.9rem; outline: none; margin-bottom: 10px; text-align: center; cursor: pointer;
+      width: 100%; max-width: 320px; background: #101a2d; color: var(--accent-cyan);
+      border: 1px solid var(--accent-cyan); padding: 6px 10px; border-radius: 8px;
+      font-size: 0.85rem; font-family: 'Cairo'; font-weight: 600; outline: none; margin-bottom: 8px; text-align: center; cursor: pointer;
     }
-    .audio-player-title { color: var(--accent-cyan); font-weight: bold; margin-bottom: 8px; font-size: 0.9rem; }
-    audio { width: 100%; height: 42px; outline: none; margin-top: 5px; }
+    .audio-player-title { color: var(--accent-cyan); font-weight: 700; margin-bottom: 6px; font-size: 0.85rem; }
+    audio { width: 100%; height: 40px; outline: none; margin-top: 4px; }
 
     .play-btn-custom {
-      background: var(--accent-cyan); color: #000; border: none; padding: 8px 20px;
-      border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 0.9rem; margin-bottom: 8px;
+      background: var(--accent-cyan); color: #000; border: none; padding: 6px 16px;
+      border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.85rem; margin-bottom: 6px; font-family: 'Cairo';
     }
-    .play-btn-custom:active { transform: scale(0.95); }
 
-    .surah-reader-box { background: rgba(0, 0, 0, 0.3); border: 1px solid var(--card-border); border-radius: 14px; padding: 22px 16px; }
+    .surah-reader-box { background: rgba(0, 0, 0, 0.35); border: 1px solid var(--card-border); border-radius: 12px; padding: 16px 12px; }
     
     .surah-text-display { 
-      font-size: 2.1rem; 
-      line-height: 2.6; 
+      font-size: 1.8rem; 
+      line-height: 2.3; 
       text-align: justify; 
       text-align-last: center; 
       color: #ffffff; 
-      font-family: 'Traditional Arabic', 'Amiri', 'Segoe UI', serif;
-      font-weight: bold;
+      font-family: 'Amiri', serif;
+      font-weight: 700;
     }
 
-    .tasbeeh-container { text-align: center; padding: 5px 0; }
-    .tasbeeh-select { width: 100%; background: #101a2d; color: var(--accent-cyan); border: 1px solid var(--accent-cyan); padding: 10px; border-radius: 10px; font-size: 0.9rem; outline: none; margin-bottom: 12px; text-align: center; }
-    .tasbeeh-phrase-display { font-size: 1.1rem; line-height: 1.6; min-height: 50px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; padding: 8px; background: rgba(255, 255, 255, 0.02); border-radius: 10px; }
-    .tasbeeh-counter-display { font-size: 3.2rem; font-weight: bold; color: var(--accent-cyan); text-shadow: 0 0 20px var(--accent-glow); margin: 8px 0; font-family: monospace; }
-    .tasbeeh-btn { width: 100px; height: 100px; border-radius: 50%; background: radial-gradient(circle, var(--accent-cyan) 0%, #007799 100%); border: none; color: #000; font-size: 1.1rem; font-weight: bold; cursor: pointer; box-shadow: 0 0 20px var(--accent-glow); }
-    .tasbeeh-btn:active { transform: scale(0.9); }
-    .reset-btn { margin-top: 12px; background: rgba(239, 68, 68, 0.15); border: 1px solid #ef4444; color: #ef4444; padding: 6px 16px; border-radius: 10px; cursor: pointer; font-size: 0.85rem; }
+    .tasbeeh-container { text-align: center; padding: 4px 0; }
+    .tasbeeh-select { width: 100%; background: #101a2d; color: var(--accent-cyan); border: 1px solid var(--accent-cyan); padding: 8px; border-radius: 8px; font-size: 0.85rem; font-family: 'Cairo'; outline: none; margin-bottom: 10px; text-align: center; }
+    .tasbeeh-phrase-display { font-size: 1rem; font-weight: 700; line-height: 1.5; min-height: 45px; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; padding: 6px; background: rgba(255, 255, 255, 0.02); border-radius: 8px; }
+    .tasbeeh-counter-display { font-size: 3rem; font-weight: 800; color: var(--accent-cyan); text-shadow: 0 0 16px var(--accent-glow); margin: 6px 0; }
+    .tasbeeh-btn { width: 90px; height: 90px; border-radius: 50%; background: radial-gradient(circle, var(--accent-cyan) 0%, #007799 100%); border: none; color: #000; font-size: 1.1rem; font-weight: 800; font-family: 'Cairo'; cursor: pointer; box-shadow: 0 0 16px var(--accent-glow); }
+    .tasbeeh-btn:active { transform: scale(0.92); }
+    .reset-btn { margin-top: 10px; background: rgba(239, 68, 68, 0.15); border: 1px solid #ef4444; color: #ef4444; padding: 4px 12px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; font-family: 'Cairo'; }
 
-    .azkar-list { display: flex; flex-direction: column; gap: 12px; }
-    .zkr-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 8px; }
-    .zkr-text { font-size: 1.1rem; line-height: 1.8; color: #f8fafc; text-align: justify; }
-    .zkr-fadhyl { font-size: 0.85rem; color: var(--gold-color); line-height: 1.5; background: rgba(245, 158, 11, 0.05); padding: 6px 10px; border-radius: 6px; border-right: 3px solid var(--gold-color); }
-    .zkr-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 4px; }
-    .zkr-count-btn { min-width: 70px; height: 38px; background: rgba(0, 212, 255, 0.15); border: 1px solid var(--accent-cyan); color: var(--accent-cyan); border-radius: 10px; font-size: 0.95rem; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center; }
+    .azkar-list, .lecture-list { display: flex; flex-direction: column; gap: 10px; }
+    .zkr-card, .lecture-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 6px; }
+    .zkr-text { font-size: 1rem; line-height: 1.7; color: #f8fafc; text-align: justify; font-family: 'Amiri', serif; }
+    .zkr-fadhyl { font-size: 0.8rem; color: var(--gold-color); line-height: 1.4; background: rgba(245, 158, 11, 0.05); padding: 4px 8px; border-radius: 6px; border-right: 3px solid var(--gold-color); }
+    .zkr-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 2px; }
+    .zkr-count-btn { min-width: 60px; height: 34px; background: rgba(0, 212, 255, 0.15); border: 1px solid var(--accent-cyan); color: var(--accent-cyan); border-radius: 8px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: flex; justify-content: center; align-items: center; font-family: 'Cairo'; }
     .zkr-count-btn.completed { background: rgba(16, 185, 129, 0.2); border-color: var(--success); color: var(--success); }
 
-    .info-box { background: rgba(18, 26, 43, 0.6); border: 1px solid rgba(0, 212, 255, 0.15); border-radius: 14px; padding: 15px; margin-bottom: 15px; line-height: 1.7; font-size: 0.85rem; }
-    .info-box-title { color: var(--accent-cyan); font-size: 0.95rem; font-weight: bold; margin-bottom: 8px; }
+    .lecture-title { font-size: 0.95rem; font-weight: 700; color: var(--accent-cyan); }
+    .lecture-sheikh { font-size: 0.78rem; color: var(--gold-color); font-weight: 600; }
   </style>
 </head>
 <body>
@@ -145,11 +160,14 @@
     <nav>
       <a onclick="showSection('home')" id="nav-home" class="active">الرئيسية</a>
       <a onclick="showSection('quran')" id="nav-quran">القرآن الكريم</a>
+      <a onclick="showSection('lectures')" id="nav-lectures">المحاضرات</a>
       <a onclick="showSection('azkar-morning')" id="nav-azkar-morning">أذكار الصباح</a>
       <a onclick="showSection('azkar-evening')" id="nav-azkar-evening">أذكار المساء</a>
       <a onclick="showSection('tasbeeh')" id="nav-tasbeeh">التسبيح</a>
     </nav>
   </header>
+
+  <button class="notification-btn" onclick="requestNotificationPermission()">🔔 تفعيل إشعار "صلِّ على النبي" كل 15 دقيقة</button>
 
   <div class="daily-verse-card">
     <div class="daily-verse-title">📖 آية اليوم</div>
@@ -158,16 +176,16 @@
 
   <div class="prayer-banner">
     <div class="prayer-header">
-      <div class="prayer-title">🕌 مواقيت الصلاة (مدينة العبور - القليوبية)</div>
-      <div class="next-prayer" id="next-prayer-text">جاري الحساب...</div>
+      <div class="prayer-title">🕌 مواقيت الصلاة (تحديث أوتوماتيكي)</div>
+      <div class="next-prayer" id="next-prayer-text">جاري جلب المواقيت...</div>
     </div>
     <div class="prayer-times-grid">
-      <div class="prayer-item" id="p-fajr"><div class="prayer-name">الفجر</div><div class="prayer-time">05:04 ص</div></div>
-      <div class="prayer-item" id="p-sunrise"><div class="prayer-name">الشروق</div><div class="prayer-time">06:34 ص</div></div>
-      <div class="prayer-item" id="p-dhuhr"><div class="prayer-name">الظهر</div><div class="prayer-time">12:52 م</div></div>
-      <div class="prayer-item" id="p-asr"><div class="prayer-name">العصر</div><div class="prayer-time">04:25 م</div></div>
-      <div class="prayer-item" id="p-maghrib"><div class="prayer-name">المغرب</div><div class="prayer-time">07:11 م</div></div>
-      <div class="prayer-item" id="p-isha"><div class="prayer-name">العشاء</div><div class="prayer-time">08:30 م</div></div>
+      <div class="prayer-item" id="p-fajr"><div class="prayer-name">الفجر</div><div class="prayer-time" id="time-fajr">--:--</div></div>
+      <div class="prayer-item" id="p-sunrise"><div class="prayer-name">الشروق</div><div class="prayer-time" id="time-sunrise">--:--</div></div>
+      <div class="prayer-item" id="p-dhuhr"><div class="prayer-name">الظهر</div><div class="prayer-time" id="time-dhuhr">--:--</div></div>
+      <div class="prayer-item" id="p-asr"><div class="prayer-name">العصر</div><div class="prayer-time" id="time-asr">--:--</div></div>
+      <div class="prayer-item" id="p-maghrib"><div class="prayer-name">المغرب</div><div class="prayer-time" id="time-maghrib">--:--</div></div>
+      <div class="prayer-item" id="p-isha"><div class="prayer-name">العشاء</div><div class="prayer-time" id="time-isha">--:--</div></div>
     </div>
   </div>
 
@@ -177,36 +195,23 @@
       <div class="card" onclick="showSection('quran')">
         <div class="card-icon">📖</div>
         <div class="card-title">القرآن الكريم</div>
-        <div class="card-desc">114 سورة كاملة مع الاستماع بأصوات كبار القراء</div>
+        <div class="card-desc">114 سورة قراءة واستماع مباشر</div>
+      </div>
+      <div class="card" onclick="showSection('lectures')">
+        <div class="card-icon">🎙️</div>
+        <div class="card-title">المحاضرات</div>
+        <div class="card-desc">دروس الشيخ الشعراوي والحويني</div>
       </div>
       <div class="card" onclick="showSection('azkar-morning')">
         <div class="card-icon">☀️</div>
         <div class="card-title">أذكار الصباح</div>
-        <div class="card-desc">أذكار التحصين والصباح مع التفاعل والهز</div>
-      </div>
-      <div class="card" onclick="showSection('azkar-evening')">
-        <div class="card-icon">🌙</div>
-        <div class="card-title">أذكار المساء</div>
-        <div class="card-desc">أذكار المساء مع العدادات التفاعلية</div>
+        <div class="card-desc">حصن المسلم مع عدادات التكرار</div>
       </div>
       <div class="card" onclick="showSection('tasbeeh')">
         <div class="card-icon">📿</div>
         <div class="card-title">التسبيح</div>
-        <div class="card-desc">سبحة إلكترونية مع خاصية الاهتزاز عند الضغط</div>
+        <div class="card-desc">سبحة إلكترونية واهتزاز تفاعلي</div>
       </div>
-    </div>
-
-    <div class="info-box">
-      <div class="info-box-title">💡 معلومات دينية قيمة</div>
-      <p style="margin: 0; color: var(--text-muted);">
-        فضل ملازمة الاستغفار والصلاة على النبي ﷺ: فتح لأبواب الرزق وكفاية للهموم والغصص، وتفريج للكروبات، وهو من أعظم القربات التي تُنير طريق المسلم.
-      </p>
-    </div>
-
-    <div class="info-box">
-      <div class="info-box-title">📜 أحاديث صحيحة (البخاري ومسلم)</div>
-      <p style="margin: 0 0 6px 0;"><strong>• صحيح البخاري:</strong> «إنَّما الأعْمالُ والنِّيَّاتُ، وإنَّما لِكُلِّ امْرِئٍ ما نَوَى».</p>
-      <p style="margin: 0;"><strong>• صحيح مسلم:</strong> «المُؤْمِنُ القَوِيُّ خَيْرٌ وَأَحَبُّ إلَى اللهِ مِنَ المُؤْمِنِ الضَّعِيفِ، وفي كُلِّ خَيْرٌ».</p>
     </div>
   </div>
 
@@ -217,14 +222,9 @@
       <button class="back-btn" onclick="backToSurahList()" id="quran-back-btn" style="display:none;">قائمة السور ↩</button>
     </div>
 
-    <div id="surah-list-container">
-      <div style="margin-bottom: 12px; color: var(--text-muted); font-size: 0.85rem;">اختر السورة لقراءتها واستماعها بالكامل (114 سورة):</div>
-      <div class="quran-grid" id="quran-surah-list"></div>
-    </div>
-
     <div id="surah-reading-container" style="display: none;">
       <div class="audio-player-box">
-        <label for="reciter-select" style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:5px;">اختر القارئ المفضّل:</label>
+        <label for="reciter-select" style="display:block; font-size:0.75rem; color:var(--text-muted); margin-bottom:4px;">اختر القارئ المفضّل:</label>
         <select id="reciter-select" class="reciter-select-box" onchange="changeReciter()">
           <option value="ar.alafasy">الشيخ مشاري راشد العفاسي</option>
           <option value="ar.husary">الشيخ محمود خليل الحصري</option>
@@ -232,9 +232,8 @@
           <option value="ar.abdulbasitmurattal">الشيخ عبد الباسط عبد الصمد</option>
         </select>
 
-        <!-- مؤقت النوم عند النوم -->
-        <div style="margin: 10px 0;">
-          <label for="sleep-timer-select" style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:5px;">⏱️ مؤقت النوم (إيقاف تلقائي):</label>
+        <div style="margin: 6px 0;">
+          <label for="sleep-timer-select" style="display:block; font-size:0.75rem; color:var(--text-muted); margin-bottom:4px;">⏱️ مؤقت النوم (إيقاف تلقائي):</label>
           <select id="sleep-timer-select" class="timer-select-box" onchange="setSleepTimer(this.value)">
             <option value="0">المؤقت مغلق</option>
             <option value="15">بعد 15 دقيقة</option>
@@ -242,17 +241,60 @@
             <option value="45">بعد 45 دقيقة</option>
             <option value="60">بعد ساعة (60 دقيقة)</option>
           </select>
-          <div id="timer-status" style="font-size:0.8rem; color:var(--gold-color); font-weight:bold;"></div>
+          <div id="timer-status" style="font-size:0.75rem; color:var(--gold-color); font-weight:bold;"></div>
         </div>
 
         <div class="audio-player-title" id="audio-title-display">استماع للقرآن الكريم</div>
         <button class="play-btn-custom" onclick="forcePlayAudio()">▶ تشغيل / إيقاف الصوت</button>
         <audio id="main-audio-player" controls preload="auto" onerror="handleAudioError()"></audio>
-        <div id="audio-status-msg" style="font-size:0.75rem; color:var(--gold-color); margin-top:5px;"></div>
+        <div id="audio-status-msg" style="font-size:0.75rem; color:var(--gold-color); margin-top:4px;"></div>
       </div>
 
       <div class="surah-reader-box">
         <div class="surah-text-display" id="surah-text-content">جاري تحميل الآيات...</div>
+      </div>
+    </div>
+
+    <div id="surah-list-container">
+      <div style="margin-bottom: 10px; color: var(--text-muted); font-size: 0.8rem;">اضغط على السورة لمطالعتها واستماعها فوراً:</div>
+      <div class="quran-grid" id="quran-surah-list"></div>
+    </div>
+  </div>
+
+  <!-- قسم المحاضرات الإيمانية -->
+  <div id="view-lectures" class="view-section">
+    <div class="section-header-bar">
+      <h2 class="section-title">🎙️ المحاضرات والدروس الإسلامية</h2>
+      <button class="back-btn" onclick="showSection('home')">رجوع ↩</button>
+    </div>
+    <div class="lecture-list">
+      <div class="lecture-card">
+        <div class="lecture-title">تفسير خواطر القرآن - مقدمة التفسير</div>
+        <div class="lecture-sheikh">الشيخ محمد متولي الشعراوي</div>
+        <audio controls preload="none">
+          <source src="https://server11.mp3quran.net/download/shaarawi/001.mp3" type="audio/mp3">
+        </audio>
+      </div>
+      <div class="lecture-card">
+        <div class="lecture-title">قصص الأنبياء - حكمة الابتلاء</div>
+        <div class="lecture-sheikh">الشيخ محمد متولي الشعراوي</div>
+        <audio controls preload="none">
+          <source src="https://server11.mp3quran.net/download/shaarawi/002.mp3" type="audio/mp3">
+        </audio>
+      </div>
+      <div class="lecture-card">
+        <div class="lecture-title">مدرسة التربية وإصلاح القلوب</div>
+        <div class="lecture-sheikh">الشيخ أبو إسحاق الحويني</div>
+        <audio controls preload="none">
+          <source src="https://archive.org/download/Heweny_Lectures/01_Heweny.mp3" type="audio/mp3">
+        </audio>
+      </div>
+      <div class="lecture-card">
+        <div class="lecture-title">فضل الصلاة على النبي والتعلق بالخير</div>
+        <div class="lecture-sheikh">الشيخ أبو إسحاق الحويني</div>
+        <audio controls preload="none">
+          <source src="https://archive.org/download/Heweny_Lectures/02_Heweny.mp3" type="audio/mp3">
+        </audio>
       </div>
     </div>
   </div>
@@ -301,7 +343,7 @@
 
 <script>
   function triggerVibration() {
-    if ("vibrate" in navigator) navigator.vibrate(40);
+    if ("vibrate" in navigator) navigator.vibrate(35);
   }
 
   function showSection(sectionId) {
@@ -314,6 +356,32 @@
     if(navBtn) navBtn.classList.add('active');
     
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // تفعيل إشعار الصلاة على النبي كل 15 دقيقة
+  function requestNotificationPermission() {
+    if ('Notification' in window) {
+      Notification.requestPermission().then(permission => {
+        if (permission === 'granted') {
+          alert('تم تفعيل إشعارات الصلاة على النبي ﷺ بنجاح!');
+          sendSalawatNotification();
+          setInterval(sendSalawatNotification, 15 * 60 * 1000);
+        } else {
+          alert('يرجى السماح بالتنبيهات من إعدادات المتصفح لعمل الميزة.');
+        }
+      });
+    } else {
+      alert('المتصفح لا يدعم إشعارات النظام.');
+    }
+  }
+
+  function sendSalawatNotification() {
+    if ('Notification' in window && Notification.permission === 'granted') {
+      new Notification('✨ تذكير الصلاة على النبي', {
+        body: 'اللَّهُمَّ صَلِّ وَسَلِّمْ وَبَارِكْ عَلَى نَبِيِّنَا مُحَمَّدٍ ﷺ',
+        icon: 'https://img.icons8.com/color/512/quran.png'
+      });
+    }
   }
 
   const surahNames = [
@@ -336,8 +404,7 @@
     const surahNum = index + 1;
     const card = document.createElement('div');
     card.className = 'surah-card-item';
-    card.innerHTML = `<div class="surah-num">سورة رقم ${surahNum}</div><div class="surah-title-ar">${name}</div>`;
-    
+    card.innerHTML = `<div class="surah-num">سورة ${surahNum}</div><div class="surah-title-ar">${name}</div>`;
     card.onclick = () => openSurah(surahNum, name);
     quranContainer.appendChild(card);
   });
@@ -351,15 +418,18 @@
     currentSurahName = name;
     serverFallbackIndex = 0;
 
+    // نقل العرض فوراً لأعلى الصفحة مع إظهار خانة السورة مباشرة
     document.getElementById('surah-list-container').style.display = 'none';
     document.getElementById('surah-reading-container').style.display = 'block';
     document.getElementById('quran-back-btn').style.display = 'inline-block';
     document.getElementById('quran-header-title').innerText = `📖 سورة ${name}`;
     
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     updateAudioSource();
 
     const textDisplay = document.getElementById('surah-text-content');
-    textDisplay.innerText = "جاري تحميل الآيات...";
+    textDisplay.innerText = "جاري تحميل الآيات المباركة...";
 
     try {
       const response = await fetch(`https://api.alquran.cloud/v1/surah/${id}`);
@@ -367,7 +437,7 @@
       let surahHtml = "";
       
       if(id !== 1 && id !== 9) {
-        surahHtml += `<div style="text-align:center; font-weight:bold; color:var(--accent-cyan); margin-bottom:20px; font-size:2.2rem;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>`;
+        surahHtml += `<div style="text-align:center; font-weight:bold; color:var(--accent-cyan); margin-bottom:15px; font-size:1.8rem;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>`;
       }
 
       data.data.ayahs.forEach(a => {
@@ -375,12 +445,12 @@
         if(id !== 1 && id !== 9) {
           text = text.replace("بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ", "");
         }
-        surahHtml += `${text} <span style="color:var(--accent-cyan); font-size:1.5rem; font-weight:normal;">﴿${a.numberInSurah}﴾</span> `;
+        surahHtml += `${text} <span style="color:var(--accent-cyan); font-size:1.3rem; font-weight:normal;">﴿${a.numberInSurah}﴾</span> `;
       });
 
       textDisplay.innerHTML = surahHtml;
     } catch (err) {
-      textDisplay.innerText = "حدث خطأ أثناء تحميل نصوص الآيات، تأكد من الاتصال بالإنترنت.";
+      textDisplay.innerText = "حدث خطأ أثناء الاتصال بالشبكة لجلُب الآيات.";
     }
   }
 
@@ -389,62 +459,39 @@
     const reciterSelect = document.getElementById('reciter-select');
     const selectedIdentifier = reciterSelect.value;
     const reciterName = reciterSelect.options[reciterSelect.selectedIndex].text;
-    const msgBox = document.getElementById('audio-status-msg');
-    msgBox.innerText = "";
 
-    document.getElementById('audio-title-display').innerText = `استماع إلى سورة ${currentSurahName} - بصوت ${reciterName}`;
+    document.getElementById('audio-title-display').innerText = `استماع لسورة ${currentSurahName} (${reciterName})`;
     
-    let sources = [];
-    if (selectedIdentifier === "ar.alafasy") {
-      sources = [
-        `https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/${currentSurahNum}.mp3`,
-        `https://server8.mp3quran.net/afs/${formattedNum}.mp3`
-      ];
-    } else if (selectedIdentifier === "ar.husary") {
-      sources = [
-        `https://cdn.islamic.network/quran/audio-surah/128/ar.husary/${currentSurahNum}.mp3`,
-        `https://server13.mp3quran.net/husr/${formattedNum}.mp3`
-      ];
-    } else if (selectedIdentifier === "ar.minshawi") {
-      sources = [
-        `https://cdn.islamic.network/quran/audio-surah/128/ar.minshawi/${currentSurahNum}.mp3`,
-        `https://server10.mp3quran.net/minsh/${formattedNum}.mp3`
-      ];
-    } else {
-      sources = [
-        `https://cdn.islamic.network/quran/audio-surah/128/ar.abdulbasitmurattal/${currentSurahNum}.mp3`,
-        `https://server7.mp3quran.net/basit/${formattedNum}.mp3`
-      ];
-    }
+    let sources = [
+      `https://cdn.islamic.network/quran/audio-surah/128/${selectedIdentifier}/${currentSurahNum}.mp3`,
+      `https://server8.mp3quran.net/afs/${formattedNum}.mp3`
+    ];
 
     const audioPlayer = document.getElementById('main-audio-player');
     audioPlayer.src = sources[serverFallbackIndex] || sources[0];
     audioPlayer.load();
 
-    // تفعيل التشغيل في الخلفية وعلى شاشة القفل
-    setupMediaSession(currentSurahName, reciterName);
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: `سورة ${currentSurahName}`,
+        artist: reciterName,
+        album: 'الهدى - القرآن الكريم'
+      });
+    }
   }
 
   function handleAudioError() {
     if (serverFallbackIndex === 0) {
       serverFallbackIndex = 1;
-      document.getElementById('audio-status-msg').innerText = "جاري التحويل لـ سيرفر صوتي بديل...";
       updateAudioSource();
       document.getElementById('main-audio-player').play().catch(()=>{});
-    } else {
-      document.getElementById('audio-status-msg').innerText = "تنبيه: اضغط على زر (▶ تشغيل) لتفعيل الصوت من المتصفح.";
     }
   }
 
   function forcePlayAudio() {
     const audioPlayer = document.getElementById('main-audio-player');
-    if (audioPlayer.paused) {
-      audioPlayer.play().catch(e => {
-        document.getElementById('audio-status-msg').innerText = "تأكد من فتح الملف بمتصفح داعم للصوت أو الاتصال بالشبكة.";
-      });
-    } else {
-      audioPlayer.pause();
-    }
+    if (audioPlayer.paused) audioPlayer.play();
+    else audioPlayer.pause();
   }
 
   function changeReciter() {
@@ -452,24 +499,6 @@
     updateAudioSource();
   }
 
-  // إعداد التشغيل في الخلفية وشاشة القفل
-  function setupMediaSession(surahName, reciterName) {
-    if ('mediaSession' in navigator) {
-      navigator.mediaSession.metadata = new MediaMetadata({
-        title: `سورة ${surahName}`,
-        artist: reciterName,
-        album: 'الهدى - القرآن الكريم',
-      });
-
-      const audioPlayer = document.getElementById('main-audio-player');
-      navigator.mediaSession.setActionHandler('play', () => audioPlayer.play());
-      navigator.mediaSession.setActionHandler('pause', () => audioPlayer.pause());
-      navigator.mediaSession.setActionHandler('seekback', () => audioPlayer.currentTime -= 10);
-      navigator.mediaSession.setActionHandler('seekforward', () => audioPlayer.currentTime += 10);
-    }
-  }
-
-  // منطق مؤقت النوم (Sleep Timer)
   let sleepTimerTimeout = null;
   let timerCountdownInterval = null;
 
@@ -480,37 +509,25 @@
     const statusSpan = document.getElementById('timer-status');
     const minutesNum = parseInt(minutes);
 
-    if (minutesNum === 0) {
-      statusSpan.innerText = '';
-      return;
-    }
+    if (minutesNum === 0) { statusSpan.innerText = ''; return; }
 
     let totalSeconds = minutesNum * 60;
-
     timerCountdownInterval = setInterval(() => {
       totalSeconds--;
       const m = Math.floor(totalSeconds / 60);
       const s = totalSeconds % 60;
-      statusSpan.innerText = `⏳ سيتوقف الصوت خلال ${m}:${s < 10 ? '0' : ''}${s}`;
-
-      if (totalSeconds <= 0) {
-        clearInterval(timerCountdownInterval);
-      }
+      statusSpan.innerText = `⏳ سينتهي خلال ${m}:${s < 10 ? '0' : ''}${s}`;
+      if (totalSeconds <= 0) clearInterval(timerCountdownInterval);
     }, 1000);
 
     sleepTimerTimeout = setTimeout(() => {
-      const audioPlayer = document.getElementById('main-audio-player');
-      if (audioPlayer) {
-        audioPlayer.pause();
-      }
-      statusSpan.innerText = '🛑 تم الإيقاف التلقائي بواسطة مؤقت النوم';
+      document.getElementById('main-audio-player').pause();
+      statusSpan.innerText = '🛑 تم الإيقاف تلقائياً';
     }, minutesNum * 60 * 1000);
   }
 
   function backToSurahList() {
-    const audioPlayer = document.getElementById('main-audio-player');
-    audioPlayer.pause();
-    
+    document.getElementById('main-audio-player').pause();
     document.getElementById('surah-reading-container').style.display = 'none';
     document.getElementById('surah-list-container').style.display = 'block';
     document.getElementById('quran-back-btn').style.display = 'none';
@@ -533,20 +550,17 @@
     document.getElementById('tasbeeh-count').innerText = tasbeehValue;
   }
 
-  // أذكار الصباح والمساء
+  // الأذكار
   const morningData = [
-    { text: "أَعُوذُ بِاللهِ مِنْ الشَّيْطَانِ الرَّجِيمِ: {اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلاَّ بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلاَ يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلاَّ بِمَا شَاء وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالأَرْضَ وَلاَ يَؤُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ}.", fadhyl: "من قالها حين يصبح أُجير من الجن حتى يمسي.", count: 1 },
-    { text: "بِسْمِ اللهِ الرَّحْمنِ الرَّحِيمِ: {قُلْ هُوَ اللَّهُ أَحَدٌ...}، {قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ...}، {قُلْ أَعُوذُ بِرَبِّ النَّاسِ...}", fadhyl: "من قالها ثلاث مرّات حين يصبح وحين يمسي تكفيه من كل شيء.", count: 3 },
-    { text: "أَصْبَحْنَا وَأَصْبَحَ المُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ، لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ المُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.", fadhyl: "", count: 1 },
-    { text: "اللَّهُمَّ أَنْتَ رَبِّي لاَ إِلَهَ إِلاَّ أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لاَ يَغْفِرُ الذُّنُوبَ إِلاَّ أَنْتَ.", fadhyl: "سيد الاستغفار: من قالها موقناً بها دخل الجنة.", count: 1 },
-    { text: "بِسْمِ اللَّهِ الَّذِي لاَ يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الأَرْضِ وَلاَ فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ.", fadhyl: "لم يضره من الله شيء.", count: 3 }
+    { text: "أَعُوذُ بِاللهِ مِنْ الشَّيْطَانِ الرَّجِيمِ: {اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ...}", fadhyl: "من قالها حين يصبح أُجير من الجن حتى يمسي.", count: 1 },
+    { text: "بِسْمِ اللهِ الرَّحْمنِ الرَّحِيمِ: {قُلْ هُوَ اللَّهُ أَحَدٌ...}، {قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ...}، {قُلْ أَعُوذُ بِرَبِّ النَّاسِ...}", fadhyl: "تكفيه من كل شيء.", count: 3 },
+    { text: "أَصْبَحْنَا وَأَصْبَحَ المُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ، لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ.", fadhyl: "", count: 1 },
+    { text: "اللَّهُمَّ أَنْتَ رَبِّي لاَ إِلَهَ إِلاَّ أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ...", fadhyl: "سيد الاستغفار: من قالها دخل الجنة.", count: 1 }
   ];
 
   const eveningData = [
     { text: "أَعُوذُ بِاللهِ مِنْ الشَّيْطَانِ الرَّجِيمِ: {اللَّهُ لاَ إِلَهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ...}", fadhyl: "من قالها حين يمسي أُجير من الجن حتى يصبح.", count: 1 },
-    { text: "بِسْمِ اللهِ الرَّحْمنِ الرَّحِيمِ: {قُلْ هُوَ اللَّهُ أَحَدٌ...}، {قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ...}، {قُلْ أَعُوذُ بِرَبِّ النَّاسِ...}", fadhyl: "تكفيه من كل شيء.", count: 3 },
-    { text: "أَمْسَيْنَا وَأَمْسَى المُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ، لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ.", fadhyl: "", count: 1 },
-    { text: "أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ.", fadhyl: "لم تضره لدغة في تلك الليلة.", count: 3 }
+    { text: "بِسْمِ اللهِ الرَّحْمنِ الرَّحِيمِ: {قُلْ هُوَ اللَّهُ أَحَدٌ...}، {قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ...}، {قُلْ أَعُوذُ بِرَبِّ النَّاسِ...}", fadhyl: "تكفيه من كل شيء.", count: 3 }
   ];
 
   function renderAzkarList(listData, containerId) {
@@ -559,7 +573,7 @@
         <div class="zkr-text">${item.text}</div>
         ${item.fadhyl ? `<div class="zkr-fadhyl">💡 ${item.fadhyl}</div>` : ''}
         <div class="zkr-footer">
-          <span style="font-size:0.8rem; color:var(--text-muted);">التكرار: ${item.count}</span>
+          <span style="font-size:0.75rem; color:var(--text-muted);">التكرار: ${item.count}</span>
           <button class="zkr-count-btn" onclick="countZkr(this)">${item.count}</button>
         </div>
       `;
@@ -570,13 +584,8 @@
   function countZkr(btn) {
     triggerVibration();
     let current = parseInt(btn.innerText);
-    if (!isNaN(current) && current > 1) {
-      btn.innerText = current - 1;
-    } else {
-      btn.innerText = "✓ تم";
-      btn.classList.add('completed');
-      btn.disabled = true;
-    }
+    if (!isNaN(current) && current > 1) btn.innerText = current - 1;
+    else { btn.innerText = "✓ تم"; btn.classList.add('completed'); btn.disabled = true; }
   }
 
   renderAzkarList(morningData, 'morning-azkar-container');
@@ -586,64 +595,36 @@
   const dailyVerses = [
     "﴿ إِنَّ مَعَ الْعُسْرِ يُسْرًا ﴾ — سورة الشرح",
     "﴿ وَأُفَوِّضُ أَمْرِي إِلَى اللَّهِ ﴾ — سورة غافر",
-    "﴿ لَا تَحْزَنْ إِنَّ اللَّهَ مَعَنَا ﴾ — سورة التوبة",
-    "﴿ وَرَحْمَتِي وَسِعَتْ كُلَّ شَيْءٍ ﴾ — سورة الأعراف"
+    "﴿ لَا تَحْزَنْ إِنَّ اللَّهَ مَعَنَا ﴾ — سورة التوبة"
   ];
-  const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
-  document.getElementById('daily-verse-content').innerText = dailyVerses[dayOfYear % dailyVerses.length];
+  document.getElementById('daily-verse-content').innerText = dailyVerses[Math.floor(Math.random() * dailyVerses.length)];
 
-  // مواقيت الصلاة العبور
-  const prayerTimes = [
-    { name: 'الفجر', id: 'p-fajr', time: '05:04' },
-    { name: 'الشروق', id: 'p-sunrise', time: '06:34' },
-    { name: 'الظهر', id: 'p-dhuhr', time: '12:52' },
-    { name: 'العصر', id: 'p-asr', time: '16:25' },
-    { name: 'المغرب', id: 'p-maghrib', time: '19:11' },
-    { name: 'العشاء', id: 'p-isha', time: '20:30' }
-  ];
+  // جلب مواقيت الصلاة أوتوماتيكياً حسب التاريخ والموقع اليومي
+  async function fetchLivePrayerTimes() {
+    try {
+      const res = await fetch('https://api.aladhan.com/v1/timingsByCity?city=Cairo&country=Egypt&method=5');
+      const data = await res.json();
+      const timings = data.data.timings;
 
-  function updatePrayerCountdown() {
-    const now = new Date();
-    let nextPrayer = null;
-    document.querySelectorAll('.prayer-item').forEach(el => el.classList.remove('active-prayer'));
+      document.getElementById('time-fajr').innerText = timings.Fajr;
+      document.getElementById('time-sunrise').innerText = timings.Sunrise;
+      document.getElementById('time-dhuhr').innerText = timings.Dhuhr;
+      document.getElementById('time-asr').innerText = timings.Asr;
+      document.getElementById('time-maghrib').innerText = timings.Maghrib;
+      document.getElementById('time-isha').innerText = timings.Isha;
 
-    for (let p of prayerTimes) {
-      const [hours, minutes] = p.time.split(':');
-      const pDate = new Date();
-      pDate.setHours(hours, minutes, 0, 0);
-      if (pDate > now) {
-        nextPrayer = { name: p.name, id: p.id, target: pDate };
-        break;
-      }
+      document.getElementById('next-prayer-text').innerText = "تم التحديث التلقائي لمواقيت اليوم ✨";
+    } catch (e) {
+      document.getElementById('next-prayer-text').innerText = "تعذر جلب المواقيت تلقائياً.";
     }
-
-    if (!nextPrayer) {
-      const [hours, minutes] = prayerTimes[0].time.split(':');
-      const pDate = new Date();
-      pDate.setDate(pDate.getDate() + 1);
-      pDate.setHours(hours, minutes, 0, 0);
-      nextPrayer = { name: prayerTimes[0].name, id: prayerTimes[0].id, target: pDate };
-    }
-
-    document.getElementById(nextPrayer.id).classList.add('active-prayer');
-    const diffMs = nextPrayer.target - now;
-    const diffHrs = Math.floor(diffMs / (1000 * 60 * 60));
-    const diffMins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
-    const diffSecs = Math.floor((diffMs % (1000 * 60)) / 1000);
-
-    document.getElementById('next-prayer-text').innerText = 
-      `الصلاة القادمة: ${nextPrayer.name} (باقي ${diffHrs}:${diffMins < 10 ? '0':''}${diffMins}:${diffSecs < 10 ? '0':''}${diffSecs})`;
   }
 
-  setInterval(updatePrayerCountdown, 1000);
-  updatePrayerCountdown();
+  fetchLivePrayerTimes();
 
-  // تفعيل الـ Service Worker للأوفلاين
+  // تفعيل الـ Service Worker
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js')
-        .then(reg => console.log('Service Worker Ready'))
-        .catch(err => console.log('SW Error:', err));
+      navigator.serviceWorker.register('./sw.js').catch(()=>{});
     });
   }
 </script>
